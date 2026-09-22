@@ -23,8 +23,6 @@ import re
 from typing import Any, Text, Dict, List
 
 import requests
-from dotenv import load_dotenv
-from abacusai import Client
 try:
     from dotenv import load_dotenv
     load_dotenv()
@@ -102,7 +100,32 @@ FALLBACK_EMISSIONS_KG_PER_KM = {
 }
 
 
-def _get_llm_response(prompt: str, max_tokens: int = 300) -> str:
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:1b")
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "ollama")  # "ollama" (free/local) or "abacus"
+
+
+def _get_llm_response_ollama(prompt: str, max_tokens: int = 300) -> str:
+    """Call a local, free Ollama model for LLM-powered responses."""
+    try:
+        resp = requests.post(
+            f"{OLLAMA_HOST}/api/generate",
+            json={
+                "model": OLLAMA_MODEL,
+                "prompt": prompt,
+                "stream": False,
+                "options": {"num_predict": max_tokens},
+            },
+            timeout=REQUEST_TIMEOUT * 4,
+        )
+        resp.raise_for_status()
+        return resp.json().get("response", "").strip() or None
+    except Exception as e:
+        logger.error("Ollama LLM call failed: %s", e)
+        return None
+
+
+def _get_llm_response_abacus(prompt: str, max_tokens: int = 300) -> str:
     """Call Abacus AI Opus 4.1 for LLM-powered responses."""
     api_key = os.getenv("ABACUS_API_KEY")
     if not api_key or api_key == "<your-api-key-here>":
@@ -120,6 +143,13 @@ def _get_llm_response(prompt: str, max_tokens: int = 300) -> str:
     except Exception as e:
         logger.error("Abacus AI LLM call failed: %s", e)
         return None
+
+
+def _get_llm_response(prompt: str, max_tokens: int = 300) -> str:
+    """Route to the configured LLM backend (free local Ollama by default)."""
+    if LLM_PROVIDER == "abacus":
+        return _get_llm_response_abacus(prompt, max_tokens)
+    return _get_llm_response_ollama(prompt, max_tokens)
 
 
 def _load_eco_database() -> List[Dict[str, Any]]:
@@ -436,8 +466,6 @@ class ActionCalculateCarbon(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        transport_mode = (tracker.get_slot("transport_mode") or "car").lower()
-        distance_km = tracker.get_slot("distance_km")
         latest_message = getattr(tracker, "latest_message", {}) or {}
         latest_user_text = latest_message.get("text", "")
         if not latest_user_text:
@@ -450,16 +478,8 @@ class ActionCalculateCarbon(Action):
 
         route_match = re.search(
             r"\bfrom\s+([a-z][a-z .'-]+?)\s+to\s+([a-z][a-z .'-]+?)(?:\?|$|\.)",
-            latest_user_text.lower(),
             text_lower,
         )
-        origin_name = tracker.get_slot("origin")
-        destination_name = tracker.get_slot("destination")
-        if route_match:
-            origin_name = origin_name or route_match.group(1).strip()
-            destination_name = destination_name or route_match.group(2).strip()
-        distance_match = re.search(r"(\d+(?:\.\d+)?)\s*km", latest_user_text.lower())
-        if distance_km is None and distance_match:
         origin_name = route_match.group(1).strip() if route_match else tracker.get_slot("origin")
         destination_name = route_match.group(2).strip() if route_match else tracker.get_slot("destination")
 
@@ -467,13 +487,6 @@ class ActionCalculateCarbon(Action):
         distance_match = re.search(r"(\d+(?:\.\d+)?)\s*km", text_lower)
         if distance_match:
             distance_km = float(distance_match.group(1))
-        if re.search(r"\bflight\b|\bflying\b", latest_user_text.lower()):
-            transport_mode = "flight"
-        elif not tracker.get_slot("transport_mode"):
-            for mode in FALLBACK_EMISSIONS_KG_PER_KM:
-                if mode in latest_user_text.lower():
-                    transport_mode = mode
-                    break
 
         detected_mode = None
         for mode in ["flight", "flying", "plane", "train", "rail", "bus", "coach", "car", "drive", "driving"]:
@@ -499,30 +512,16 @@ class ActionCalculateCarbon(Action):
         destination_lng = tracker.get_slot("destination_lng")
 
         if origin_lat is None and origin_name:
-            origin_coordinates = KNOWN_DESTINATIONS.get(
-                origin_name.lower()
-            )
+            origin_coordinates = KNOWN_DESTINATIONS.get(origin_name.lower())
             if origin_coordinates:
                 origin_lat, origin_lng = origin_coordinates
         if destination_lat is None and destination_name:
-            destination_coordinates = KNOWN_DESTINATIONS.get(
-                destination_name.lower()
-            )
+            destination_coordinates = KNOWN_DESTINATIONS.get(destination_name.lower())
             if destination_coordinates:
                 destination_lat, destination_lng = destination_coordinates
-        if origin_name:
-            origin_coords = KNOWN_DESTINATIONS.get(origin_name.lower())
-            if origin_coords:
-                origin_lat, origin_lng = origin_coords
-        if destination_name:
-            dest_coords = KNOWN_DESTINATIONS.get(destination_name.lower())
-            if dest_coords:
-                destination_lat, destination_lng = dest_coords
 
         used_fallback = distance_km is None
 
-        if transport_mode == "flight" and origin_lat is not None and origin_lng is not None and destination_lat is not None and destination_lng is not None:
-        used_fallback = False
         if origin_lat is not None and origin_lng is not None and destination_lat is not None and destination_lng is not None:
             distance_km = _haversine_km(float(origin_lat), float(origin_lng), float(destination_lat), float(destination_lng))
             used_fallback = False
@@ -530,7 +529,6 @@ class ActionCalculateCarbon(Action):
             distance_km = 100.0
             used_fallback = True
 
-        distance_km = float(distance_km or 100)
         distance_km = float(distance_km)
 
         is_distance_query = bool(
@@ -583,29 +581,10 @@ class ActionCalculateCarbon(Action):
             else:
                 tier = "red"
 
-            route_detail = ""
-            if (
-                transport_mode == "flight"
-                and origin_name
-                and destination_name
-                and not used_fallback
-            ):
-                route_detail = (
-                    f" from {origin_name.title()} to {destination_name.title()}"
-                    f" ({distance_km:,.0f} km)"
             if is_distance_query and origin_name and destination_name:
                 dispatcher.utter_message(
-                    text=f"The straight-line distance from {origin_name.title()} to {destination_name.title()} is approximately {distance_km:,.0f} km. Estimated flight emissions: {co2_kg:.1f} kg CO2e ({tier})."
+                    text=f"The straight-line distance from {origin_name.title()} to {destination_name.title()} is approximately {distance_km:,.0f} km. Estimated {transport_mode} emissions: {co2_kg:.1f} kg CO2e ({tier})."
                 )
-            qualifier = (
-                f" for your requested route{route_detail}"
-                if not used_fallback
-                else " for an indicative 100 km journey"
-            )
-            dispatcher.utter_message(
-                text=f"Estimated impact: {co2_kg:.1f} kg CO2e ({tier}){qualifier}."
-            )
-            return [SlotSet("carbon_estimate", co2_kg), SlotSet("carbon_tier", tier)]
             elif origin_name and destination_name and not used_fallback:
                 dispatcher.utter_message(
                     text=f"Estimated impact: {co2_kg:.1f} kg CO2e ({tier}) for a {transport_mode} from {origin_name.title()} to {destination_name.title()} ({distance_km:,.0f} km)."
@@ -638,24 +617,20 @@ class ActionCalculateCarbon(Action):
             logger.error("Climatiq API error: %s", e)
             co2_kg = round(distance_km * FALLBACK_EMISSIONS_KG_PER_KM.get(transport_mode, 0.171), 1)
             tier = "green" if co2_kg < 50 else "amber" if co2_kg < 150 else "red"
-            dispatcher.utter_message(
-                 text=f"I couldn't reach Climatiq, so this is an indicative estimate: "
-                     f"{co2_kg:.1f} kg CO2e for {distance_km:.0f} km by "
-                     f"{transport_mode} ({tier})."
-            )
-            return [SlotSet("carbon_estimate", co2_kg), SlotSet("carbon_tier", tier)]
+
             if is_distance_query and origin_name and destination_name:
                 dispatcher.utter_message(
-                    text=f"The straight-line distance from {origin_name.title()} to {destination_name.title()} is approximately {distance_km:,.0f} km. Indicative flight emissions: {co2_kg:.1f} kg CO2e ({tier})."
+                    text=f"The straight-line distance from {origin_name.title()} to {destination_name.title()} is approximately {distance_km:,.0f} km. Indicative {transport_mode} emissions: {co2_kg:.1f} kg CO2e ({tier})."
                 )
             elif origin_name and destination_name and not used_fallback:
                 dispatcher.utter_message(
-                    text=f"Estimated impact: {co2_kg:.1f} kg CO2e ({tier}) for a {transport_mode} from {origin_name.title()} to {destination_name.title()} ({distance_km:,.0f} km)."
+                    text=f"I couldn't reach Climatiq, so this is an indicative estimate: {co2_kg:.1f} kg CO2e ({tier}) for a {transport_mode} from {origin_name.title()} to {destination_name.title()} ({distance_km:,.0f} km)."
                 )
             else:
                 dispatcher.utter_message(
-                    text=f"Estimated impact: {co2_kg:.1f} kg CO2e ({tier}) for {distance_km:,.0f} km by {transport_mode}."
+                    text=f"I couldn't reach Climatiq, so this is an indicative estimate: {co2_kg:.1f} kg CO2e for {distance_km:,.0f} km by {transport_mode} ({tier})."
                 )
+
             slots_to_set = [
                 SlotSet("carbon_estimate", co2_kg),
                 SlotSet("carbon_tier", tier),
