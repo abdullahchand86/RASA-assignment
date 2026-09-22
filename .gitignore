@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+.env
+
+# Virtual environment
+venv/
+env/
+
+# Rasa
+.rasa/
+models/
+results/
+*.sqlite
+
+# Streamlit
+.streamlit/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+venv/
+models/
+results/
+_pycache_/

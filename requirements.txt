@@ -1,0 +1,7 @@
+rasa==3.6.21
+rasa-sdk==3.6.2
+streamlit==1.31.1
+requests==2.32.5
+python-dotenv==1.2.1
+pandas==2.3.3
+numpy==1.23.5

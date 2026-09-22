@@ -1,0 +1,63 @@
+version: "3.1"
+
+stories:
+- story: plan a lower-impact trip
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I'm traveling from Berlin to Kyoto
+    intent: provide_trip_details
+    entities:
+    - origin: Berlin
+    - destination: Kyoto
+  - action: action_get_location
+  - user: |
+      estimate the carbon footprint of my trip
+    intent: ask_carbon_footprint_estimate
+  - action: action_calculate_carbon
+
+- story: compare transport for a destination
+  steps:
+  - user: |
+      what's greener, train or plane to Paris
+    intent: compare_transport_modes
+    entities:
+    - destination: Paris
+  - action: action_compare_transport_modes
+
+- story: find sustainable accommodation
+  steps:
+  - user: |
+      suggest eco-friendly hotels in Lisbon
+    intent: ask_sustainable_accommodation
+    entities:
+    - destination: Lisbon
+  - action: action_fetch_accommodation
+  - action: action_rank_options
+  - action: utter_present_recommendation
+
+- story: answer general sustainability questions
+  steps:
+  - user: |
+      how can I make my trip greener
+    intent: ask_sustainability_tips
+  - action: utter_sustainability_tips
+  - user: |
+      how can I offset my emissions
+    intent: ask_offset_options
+  - action: utter_offset_options
+
+- story: fallback clarification
+  steps:
+  - user: |
+      asdkjh
+    intent: nlu_fallback
+  - action: action_two_stage_clarify
+  - user: |
+      still not understood
+    intent: nlu_fallback
+  - action: action_two_stage_clarify
+  - action: action_human_handover

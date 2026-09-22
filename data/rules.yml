@@ -1,0 +1,412 @@
+version: "3.1"
+
+rules:
+- rule: Greet user
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Answer carbon footprint question
+  steps:
+  - intent: ask_carbon_footprint_estimate
+  - action: action_calculate_carbon
+
+- rule: Compare transport modes
+  steps:
+  - intent: compare_transport_modes
+  - action: action_compare_transport_modes
+
+- rule: Recommend sustainable accommodation
+  steps:
+  - intent: ask_sustainable_accommodation
+  - action: action_fetch_accommodation
+  - action: action_rank_options
+  - action: utter_present_recommendation
+
+- rule: Explain carbon offsets
+  steps:
+  - intent: ask_offset_options
+  - action: utter_offset_options
+
+- rule: Give sustainability tips
+  steps:
+  - intent: ask_sustainability_tips
+  - action: utter_sustainability_tips
+
+- rule: Handle trip details
+  steps:
+  - intent: provide_trip_details
+  - action: action_get_location
+
+- rule: Explain bot capabilities
+  steps:
+  - intent: ask_general_info
+  - action: utter_general_info
+
+- rule: Handle out of scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: Confirm user choice
+  steps:
+  - intent: affirm
+  - action: utter_affirm
+
+- rule: Handle denial
+  steps:
+  - intent: deny
+  - action: utter_deny
+
+- rule: Answer bot identity question
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+
+- rule: Thank the user
+  steps:
+  - intent: thank_you
+  - action: utter_thank_you
+
+- rule: Explain local transport
+  steps:
+  - intent: ask_local_transport_options
+  - action: utter_local_transport_options
+
+- rule: Suggest lower-carbon destinations
+  steps:
+  - intent: ask_carbon_neutral_destinations
+  - action: utter_carbon_neutral_destinations
+
+- rule: Explain best travel timing
+  steps:
+  - intent: ask_best_time_to_visit
+  - action: utter_best_time_to_visit
+
+- rule: Give packing tips
+  steps:
+  - intent: ask_sustainable_packing_tips
+  - action: utter_sustainable_packing_tips
+
+- rule: Suggest an itinerary
+  steps:
+  - intent: request_itinerary_suggestion
+  - action: utter_itinerary_suggestion
+
+- rule: Explain sustainable food
+  steps:
+  - intent: ask_food_sustainability
+  - action: utter_food_sustainability
+
+- rule: Explain wildlife conservation
+  steps:
+  - intent: ask_wildlife_conservation_info
+  - action: utter_wildlife_conservation_info
+
+- rule: Give plastic-free travel tips
+  steps:
+  - intent: ask_plastic_free_travel_tips
+  - action: utter_plastic_free_travel_tips
+
+- rule: Explain local etiquette
+  steps:
+  - intent: ask_local_culture_etiquette
+  - action: utter_local_culture_etiquette
+
+- rule: Suggest budget sustainable options
+  steps:
+  - intent: ask_budget_friendly_sustainable_options
+  - action: utter_budget_friendly_sustainable_options
+
+- rule: Explain visa requirements
+  steps:
+  - intent: ask_visa_requirements
+  - action: utter_visa_requirements
+
+- rule: Human agent request
+  steps:
+  - intent: request_human_agent
+  - action: action_human_handover
+  - action: utter_handover_notice
+
+- rule: Compare destination sustainability
+  steps:
+  - intent: compare_destinations_sustainability
+  - action: utter_compare_destinations_sustainability
+
+- rule: Explain public transport passes
+  steps:
+  - intent: ask_public_transport_pass
+  - action: utter_public_transport_pass
+
+- rule: Receive feedback
+  steps:
+  - intent: provide_feedback
+  - action: utter_feedback_received
+
+- rule: Cancel current request
+  steps:
+  - intent: cancel_request
+  - action: utter_cancel_request
+
+- rule: Define carbon footprint
+  steps:
+  - intent: ask_carbon_footprint_definition
+  - action: utter_carbon_footprint_definition
+
+- rule: Explain emissions scopes
+  steps:
+  - intent: ask_scope_of_emissions
+  - action: utter_scope_of_emissions
+
+- rule: Explain hotel certifications
+  steps:
+  - intent: ask_hotel_certifications
+  - action: utter_hotel_certifications
+
+- rule: Explain offset credibility
+  steps:
+  - intent: ask_carbon_offset_credibility
+  - action: utter_carbon_offset_credibility
+
+- rule: Suggest flight alternatives
+  steps:
+  - intent: ask_flight_alternatives
+  - action: utter_flight_alternatives
+
+- rule: Explain train routes
+  steps:
+  - intent: ask_train_routes
+  - action: utter_train_routes
+
+- rule: Explain electric vehicle rentals
+  steps:
+  - intent: ask_electric_vehicle_rental
+  - action: utter_electric_vehicle_rental
+
+- rule: Suggest bike rentals
+  steps:
+  - intent: ask_bike_rental_options
+  - action: utter_bike_rental_options
+
+- rule: Suggest walking tours
+  steps:
+  - intent: ask_walking_tour_options
+  - action: utter_walking_tour_options
+
+- rule: Explain sustainable souvenirs
+  steps:
+  - intent: ask_sustainable_souvenirs
+  - action: utter_sustainable_souvenirs
+
+- rule: Give water conservation tips
+  steps:
+  - intent: ask_water_conservation_tips
+  - action: utter_water_conservation_tips
+
+- rule: Give hotel energy tips
+  steps:
+  - intent: ask_energy_saving_tips_hotel
+  - action: utter_energy_saving_tips_hotel
+
+- rule: Suggest local guides
+  steps:
+  - intent: ask_local_guides
+  - action: utter_local_guides
+
+- rule: Explain community tourism
+  steps:
+  - intent: ask_community_based_tourism
+  - action: utter_community_based_tourism
+
+- rule: Explain volunteering
+  steps:
+  - intent: ask_volunteering_opportunities
+  - action: utter_volunteering_opportunities
+
+- rule: Explain national parks
+  steps:
+  - intent: ask_national_parks_info
+  - action: utter_national_parks_info
+
+- rule: Explain marine conservation
+  steps:
+  - intent: ask_marine_conservation
+  - action: utter_marine_conservation
+
+- rule: Give coral reef practices
+  steps:
+  - intent: ask_coral_reef_safe_practices
+  - action: utter_coral_reef_safe_practices
+
+- rule: Explain overtourism
+  steps:
+  - intent: ask_overtourism_info
+  - action: utter_overtourism_info
+
+- rule: Explain carbon labels
+  steps:
+  - intent: ask_carbon_label_meaning
+  - action: utter_carbon_label_meaning
+
+- rule: Explain travel climate impact
+  steps:
+  - intent: ask_climate_change_travel_impact
+  - action: utter_climate_change_travel_impact
+
+- rule: Handle weather question
+  steps:
+  - intent: ask_weather_forecast
+  - action: utter_weather_forecast
+
+- rule: Handle currency question
+  steps:
+  - intent: ask_currency_exchange
+  - action: utter_currency_exchange
+
+- rule: Give language tips
+  steps:
+  - intent: ask_language_tips
+  - action: utter_language_tips
+
+- rule: Give safety tips
+  steps:
+  - intent: ask_safety_tips
+  - action: utter_safety_tips
+
+- rule: Explain travel insurance
+  steps:
+  - intent: ask_travel_insurance
+  - action: utter_travel_insurance
+
+- rule: Give health precautions
+  steps:
+  - intent: ask_health_precautions
+  - action: utter_health_precautions
+
+- rule: Explain vaccination requirements
+  steps:
+  - intent: ask_vaccination_requirements
+  - action: utter_vaccination_requirements
+
+- rule: Explain time zones
+  steps:
+  - intent: ask_time_zone_info
+  - action: utter_time_zone_info
+
+- rule: Explain airport information
+  steps:
+  - intent: ask_airport_info
+  - action: utter_airport_info
+  - action: action_flight_schedule
+
+- rule: Handle booking assistance
+  steps:
+  - intent: request_booking_assistance
+  - action: utter_booking_assistance
+
+- rule: Explain group discounts
+  steps:
+  - intent: ask_group_travel_discounts
+  - action: utter_group_travel_discounts
+
+- rule: Suggest family sustainable options
+  steps:
+  - intent: ask_family_friendly_sustainable_options
+  - action: utter_family_friendly_sustainable_options
+
+- rule: Give solo travel tips
+  steps:
+  - intent: ask_solo_travel_tips
+  - action: utter_solo_travel_tips
+
+- rule: Suggest digital detox retreats
+  steps:
+  - intent: ask_digital_detox_retreats
+  - action: utter_digital_detox_retreats
+
+- rule: Explain slow travel
+  steps:
+  - intent: ask_slow_travel_tips
+  - action: utter_slow_travel_tips
+
+- rule: Explain food footprint
+  steps:
+  - intent: ask_carbon_footprint_of_food
+  - action: utter_carbon_footprint_of_food
+
+- rule: Explain shopping footprint
+  steps:
+  - intent: ask_carbon_footprint_of_shopping
+  - action: utter_carbon_footprint_of_shopping
+
+- rule: Explain renewable hotel energy
+  steps:
+  - intent: ask_renewable_energy_hotels
+  - action: utter_renewable_energy_hotels
+
+- rule: Explain reforestation programmes
+  steps:
+  - intent: ask_reforestation_programs
+  - action: utter_reforestation_programs
+
+- rule: Correct trip information
+  steps:
+  - intent: correct_information
+  - action: utter_correct_information
+
+- rule: Handle previous trip summary
+  steps:
+  - intent: ask_previous_trip_summary
+  - action: utter_previous_trip_summary
+
+- rule: Restart conversation
+  steps:
+  - intent: restart_conversation
+  - action: utter_restart_conversation
+
+- rule: Explain language support
+  steps:
+  - intent: ask_bot_language_support
+  - action: utter_bot_language_support
+
+- rule: Explain data privacy
+  steps:
+  - intent: ask_data_privacy
+  - action: utter_data_privacy
+
+- rule: Escalate complaint
+  steps:
+  - intent: escalate_complaint
+  - action: action_human_handover
+  - action: utter_escalate_complaint
+
+- rule: Explain loyalty programmes
+  steps:
+  - intent: ask_membership_loyalty_programs
+  - action: utter_membership_loyalty_programs
+
+- rule: Estimate trip cost
+  steps:
+  - intent: ask_trip_cost_estimate
+  - action: utter_trip_cost_estimate
+
+- rule: Explain luggage allowance
+  steps:
+  - intent: ask_luggage_allowance
+  - action: utter_luggage_allowance
+
+- rule: Handle small talk
+  steps:
+  - intent: small_talk
+  - action: utter_small_talk
+
+- rule: Handle NLU fallback
+  steps:
+  - intent: nlu_fallback
+  - action: action_default_fallback

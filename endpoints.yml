@@ -1,0 +1,11 @@
+action_endpoint:
+  url: "http://localhost:5055/webhook"
+
+# tracker_store left on default (in-memory) for this coursework deployment.
+# For production, use a database tracker store with an explicit retention
+# policy to satisfy the GDPR data-minimisation requirement from Task 2 —
+# e.g.:
+# tracker_store:
+#   type: SQL
+#   dialect: "sqlite"
+#   db: "trackers.db"

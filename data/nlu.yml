@@ -1,0 +1,675 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey there
+    - good morning
+    - hey bot
+    - hi, I need some travel help
+    - hello there
+    - can you help me plan a sustainable trip
+    - I need help planning a holiday
+    - start a trip plan
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - that's all, thanks
+    - talk to you later
+    - I'm done, bye
+    - thanks, goodbye
+    - have a good day
+
+- intent: ask_carbon_footprint_estimate
+  examples: |
+    - how much CO2 will my trip produce
+    - what's the carbon footprint of flying from [Berlin](origin) to [Bangkok](destination)
+    - calculate my travel emissions
+    - I'm flying from [London](origin) to [Tokyo](destination), what's my footprint
+    - can you estimate the emissions for my flight
+    - how sustainable is my trip to [Thailand](destination)
+    - what's the environmental impact of my journey
+    - tell me the carbon cost of traveling from [Paris](origin) to [New York](destination)
+    - estimate emissions for [500](distance_km) km by [car](transport_mode)
+    - how much carbon does a [750](distance_km) km [train](transport_mode) trip produce
+    - what are the CO2 emissions for a [flight](transport_mode) from [Berlin](origin) to [Paris](destination)
+    - what are the CO2 emissions for a [flight](transport_mode) from [Berlin](origin) to [London](destination)
+    - what is the carbon footprint of a [flight](transport_mode) from [London](origin) to [Paris](destination)
+    - calculate the emissions for a [300](distance_km) km [bus](transport_mode) trip
+    - how many kilometres is it from [Berlin](origin) to [Bangalore](destination)
+    - how many kilometres is it from [Berlin](origin) to [Paris](destination)
+    - how many kilometres is it from [Berlin](origin) to [London](destination)
+    - calculate the impact of my route
+
+- intent: compare_transport_modes
+  examples: |
+    - is it better to take the train or fly
+    - compare emissions between flying and driving
+    - what's greener, train or plane
+    - should I fly or take the train to [Amsterdam](destination)
+    - which transport option is more eco-friendly
+    - car vs train, which is better for the environment
+    - what's the lowest carbon way to travel to [Rome](destination)
+    - compare a bus, train, and flight
+    - compare transport options for my trip
+    - which is more sustainable, a car or a bus
+
+- intent: ask_sustainable_accommodation
+  examples: |
+    - suggest eco-friendly hotels in [Lisbon](destination)
+    - which hotels are more sustainable
+    - I want a green hotel option
+    - recommend low-impact accommodation
+    - are there eco lodges near [Bali](destination)
+    - what hotels have the lowest carbon footprint
+    - find me sustainable places to stay
+    - recommend an eco-friendly place to stay
+    - show sustainable accommodation in [Kyoto](destination)
+    - where can I stay responsibly
+
+- intent: ask_offset_options
+  examples: |
+    - how can I offset my carbon emissions
+    - where can I buy carbon offsets
+    - I want to offset my flight
+    - recommend a carbon offset provider
+    - how do I compensate for my trip's emissions
+    - can I make my trip carbon neutral
+    - what are my carbon offset options
+    - tell me about offsetting a journey
+
+- intent: ask_sustainability_tips
+  examples: |
+    - give me tips for sustainable travel
+    - how can I travel more responsibly
+    - what can I do to reduce my travel impact
+    - any eco-friendly travel advice
+    - how do I make my trip greener
+    - tips for reducing my carbon footprint while traveling
+    - how can I choose a lower-impact holiday
+    - give me advice for greener transport and hotels
+
+- intent: provide_trip_details
+  examples: |
+    - I'm traveling from [Berlin](origin) to [Bangkok](destination)
+    - my trip is from [Madrid](origin) to [Cairo](destination)
+    - I'll be flying on [March 5th](date)
+    - I'm going for [7](duration) nights
+    - traveling with [2](passengers) people
+    - departing from [Munich](origin)
+    - I want to go from [London](origin) to [Paris](destination) on [June 12](date)
+    - there will be [4](passengers) travellers
+    - my stay will last [5](duration) days
+    - I'm heading to [Rome](destination)
+    - I want to visit [Kyoto](destination)
+    - I want to visit [Lisbon](destination)
+    - I want to travel to [Berlin](destination)
+    - I want to travel to [Paris](destination)
+    - I want to travel to [Karachi](destination)
+
+- intent: ask_general_info
+  examples: |
+    - what can you do
+    - how does this bot work
+    - what kind of questions can I ask you
+    - what is this chatbot for
+    - explain what you help with
+    - who made you
+    - what features do you have
+    - can you help me reduce travel emissions
+
+- intent: out_of_scope
+  examples: |
+    - what's the weather today
+    - book me a flight
+    - tell me a joke
+    - what's the capital of France
+    - can you order food for me
+    - play some music
+    - fix my laptop
+    - what is the latest football score
+
+- intent: affirm
+  examples: |
+    - yes
+    - yeah that's right
+    - sure
+    - correct
+    - sounds good
+    - yep, go ahead
+    - that works for me
+
+- intent: deny
+  examples: |
+    - no
+    - nope
+    - that's not right
+    - not really
+    - no thanks
+    - I don't want that
+    - cancel that
+
+- intent: bot_challenge
+  examples: |
+    - are you a real person
+    - am I talking to a bot
+    - are you human
+    - is this an AI
+    - are you a chatbot
+    - who am I speaking with
+
+- intent: thank_you
+  examples: |
+    - thanks
+    - thank you so much
+    - appreciate the help
+    - that's really helpful, thanks
+    - great, thanks a lot
+    - thanks for the info
+
+- intent: ask_local_transport_options
+  examples: |
+    - how do I get around in [Kyoto](destination)
+    - what's the best way to travel within [Lisbon](destination)
+    - is there public transport in [Bangkok](destination)
+    - how can I move around sustainably once I arrive
+    - what local transport options are eco-friendly in [Amsterdam](destination)
+    - can I rent a bike in [Copenhagen](destination)
+    - does [Vienna](destination) have good public transit
+
+- intent: ask_carbon_neutral_destinations
+  examples: |
+    - what are some low-carbon travel destinations
+    - suggest a destination with a small environmental footprint
+    - where can I go that's eco-friendly
+    - recommend a green travel destination
+    - which countries are best for sustainable tourism
+    - give me ideas for eco-conscious trips
+    - where should I travel to minimize my impact
+
+- intent: ask_best_time_to_visit
+  examples: |
+    - when is the best time to visit [Bali](destination)
+    - what season should I travel to [Iceland](destination)
+    - when should I go to avoid overtourism in [Venice](destination)
+    - what's the ideal time of year to visit [Kyoto](destination)
+    - is there a low season for [Santorini](destination)
+    - when's a sustainable time to travel there
+
+- intent: ask_sustainable_packing_tips
+  examples: |
+    - what should I pack for an eco-friendly trip
+    - any tips for packing sustainably
+    - how do I avoid single-use plastics while traveling
+    - what reusable items should I bring
+    - help me pack in a more sustainable way
+    - what's a zero-waste packing list
+
+- intent: request_itinerary_suggestion
+  examples: |
+    - can you plan an eco-friendly itinerary for [Costa Rica](destination)
+    - suggest a sustainable travel plan for [Japan](destination)
+    - build me a green trip itinerary
+    - help me plan a low-impact holiday to [Norway](destination)
+    - what would a sustainable 5-day trip to [Peru](destination) look like
+    - design an eco-conscious travel schedule
+
+- intent: ask_food_sustainability
+  examples: |
+    - what's sustainable eating while traveling
+    - recommend eco-friendly restaurants in [Barcelona](destination)
+    - how can I eat more sustainably on my trip
+    - are there farm-to-table options in [Tuscany](destination)
+    - what food choices have a lower carbon footprint
+    - suggest local, sustainable food spots
+
+- intent: ask_wildlife_conservation_info
+  examples: |
+    - how can I visit wildlife responsibly
+    - are there ethical safari operators in [Kenya](destination)
+    - what's responsible wildlife tourism
+    - how do I avoid harming animals while sightseeing
+    - recommend conservation-friendly tours
+    - is elephant riding ethical
+
+- intent: ask_plastic_free_travel_tips
+  examples: |
+    - how do I avoid plastic waste while traveling
+    - tips for a plastic-free trip
+    - what reusable items reduce plastic use
+    - how can I cut down on plastic on holiday
+    - suggest ways to travel without single-use plastic
+
+- intent: ask_local_culture_etiquette
+  examples: |
+    - what should I know about local customs in [Kyoto](destination)
+    - are there cultural norms I should respect in [Morocco](destination)
+    - how should I dress when visiting [Dubai](destination)
+    - what etiquette should I follow as a tourist there
+    - tell me about respectful tourism practices in [India](destination)
+
+- intent: ask_budget_friendly_sustainable_options
+  examples: |
+    - can sustainable travel be affordable
+    - what are cheap eco-friendly travel options
+    - how do I travel green on a budget
+    - is sustainable tourism expensive
+    - suggest low-cost sustainable travel tips
+
+- intent: ask_visa_requirements
+  examples: |
+    - do I need a visa for [Thailand](destination)
+    - what are the visa requirements for [Kenya](destination)
+    - can I travel to [Japan](destination) without a visa
+    - what documents do I need to enter [Brazil](destination)
+    - visa rules for visiting [Egypt](destination)
+
+- intent: request_human_agent
+  examples: |
+    - can I talk to a real person
+    - connect me with customer support
+    - I want to speak to a human
+    - transfer me to an agent
+    - this isn't helping, get me a person
+    - I need a human advisor
+    - human advisor
+    - speak to a human advisor
+    - I want to speak with a human advisor
+
+- intent: compare_destinations_sustainability
+  examples: |
+    - which is more sustainable, [Bali](destination) or [Phuket](destination)
+    - compare the environmental impact of [Iceland](destination) and [Norway](destination)
+    - is [Costa Rica](destination) greener than [Mexico](destination)
+    - which destination has better sustainability practices
+    - help me choose between two eco-friendly destinations
+
+- intent: ask_public_transport_pass
+  examples: |
+    - is there a tourist transport pass in [Berlin](destination)
+    - are there discounted transit cards for visitors
+    - what's the best way to buy public transport tickets in [Paris](destination)
+    - does [Tokyo](destination) have a rail pass for tourists
+    - how do I get a metro card in [London](destination)
+
+- intent: provide_feedback
+  examples: |
+    - this bot was really helpful
+    - I didn't like that answer
+    - your suggestion wasn't useful
+    - great response, thank you
+    - that recommendation was spot on
+    - this wasn't what I was looking for
+
+- intent: cancel_request
+  examples: |
+    - cancel my trip plan
+    - never mind, forget it
+    - stop, I don't need this anymore
+    - cancel that request
+    - I changed my mind
+
+- intent: ask_carbon_footprint_definition
+  examples: |
+    - what does carbon footprint mean
+    - can you explain what CO2e is
+    - what's a carbon footprint exactly
+    - define carbon emissions for me
+    - what does CO2 equivalent mean
+
+- intent: ask_scope_of_emissions
+  examples: |
+    - what's the difference between scope 1 2 and 3 emissions
+    - what are emission scopes
+    - explain scope 3 emissions
+    - what counts as direct vs indirect emissions
+
+- intent: ask_hotel_certifications
+  examples: |
+    - what does a green key certification mean
+    - are there certified eco hotels in [Lisbon](destination)
+    - what's LEED certification for hotels
+    - how do I know if a hotel is genuinely sustainable
+    - what sustainability certifications should I look for
+
+- intent: ask_carbon_offset_credibility
+  examples: |
+    - are carbon offsets actually effective
+    - how do I know if an offset program is legitimate
+    - is offsetting just greenwashing
+    - which offset certifications are trustworthy
+    - can I trust carbon offset providers
+
+- intent: ask_flight_alternatives
+  examples: |
+    - is there a way to avoid flying to [Rome](destination)
+    - what are alternatives to flying for long trips
+    - can I get to [Barcelona](destination) without flying
+    - suggest non-flight options for this route
+
+- intent: ask_train_routes
+  examples: |
+    - is there a direct train to [Vienna](destination)
+    - what train routes go to [Amsterdam](destination)
+    - can I take a night train to [Prague](destination)
+    - are there high-speed rail options to [Paris](destination)
+
+- intent: ask_electric_vehicle_rental
+  examples: |
+    - can I rent an electric car in [Oslo](destination)
+    - are EV rentals available in [Berlin](destination)
+    - where can I find electric vehicle rentals
+    - is there EV charging infrastructure in [Amsterdam](destination)
+
+- intent: ask_bike_rental_options
+  examples: |
+    - where can I rent a bike in [Copenhagen](destination)
+    - are there bike share programs in [Amsterdam](destination)
+    - can I cycle around [Kyoto](destination)
+    - suggest bike rental spots
+
+- intent: ask_walking_tour_options
+  examples: |
+    - are there walking tours in [Rome](destination)
+    - suggest a self-guided walking route
+    - can I explore [Lisbon](destination) on foot
+    - recommend a walking tour
+
+- intent: ask_sustainable_souvenirs
+  examples: |
+    - what are ethical souvenirs to buy
+    - suggest eco-friendly gifts from [Marrakech](destination)
+    - how do I shop responsibly while traveling
+    - what souvenirs support local communities
+
+- intent: ask_water_conservation_tips
+  examples: |
+    - how can I save water while traveling
+    - tips for reducing water use on holiday
+    - is water scarce in [Cape Town](destination)
+    - how do I travel responsibly regarding water use
+
+- intent: ask_energy_saving_tips_hotel
+  examples: |
+    - how can I save energy in my hotel room
+    - tips for reducing energy use while staying somewhere
+    - should I turn off the AC when I leave the room
+    - how can hotel guests be more energy conscious
+
+- intent: ask_local_guides
+  examples: |
+    - can you recommend a local tour guide in [Nairobi](destination)
+    - suggest community-led tours
+    - are there local guides for [Kyoto](destination)
+    - find me a guide who supports the local economy
+
+- intent: ask_community_based_tourism
+  examples: |
+    - what is community-based tourism
+    - are there village stays in [Peru](destination)
+    - how can I support local communities while traveling
+    - suggest homestay options that benefit locals
+
+- intent: ask_volunteering_opportunities
+  examples: |
+    - are there volunteer programs in [Costa Rica](destination)
+    - can I do conservation volunteering
+    - suggest ethical volunteer tourism options
+    - how do I find responsible volunteering abroad
+
+- intent: ask_national_parks_info
+  examples: |
+    - what national parks are near [Nairobi](destination)
+    - tell me about protected areas in [Costa Rica](destination)
+    - are there eco-friendly ways to visit national parks
+    - what parks should I visit responsibly
+
+- intent: ask_marine_conservation
+  examples: |
+    - how can I snorkel responsibly
+    - are there marine protected areas near [Bali](destination)
+    - what's sustainable diving practice
+    - how do I avoid harming coral reefs
+
+- intent: ask_coral_reef_safe_practices
+  examples: |
+    - what sunscreen is reef safe
+    - how do I avoid damaging coral reefs
+    - can I touch coral while snorkeling
+    - reef-safe travel tips
+
+- intent: ask_overtourism_info
+  examples: |
+    - what is overtourism
+    - is [Venice](destination) overcrowded with tourists
+    - how can I avoid contributing to overtourism
+    - which destinations suffer from too many tourists
+
+- intent: ask_carbon_label_meaning
+  examples: |
+    - what does a carbon label on a flight ticket mean
+    - how are emissions labels calculated
+    - what does low-carbon certified mean
+    - explain the eco label on this product
+
+- intent: ask_climate_change_travel_impact
+  examples: |
+    - how does travel contribute to climate change
+    - what percentage of emissions come from tourism
+    - how big is aviation's climate impact
+    - does tourism affect global warming
+
+- intent: ask_weather_forecast
+  examples: |
+    - what's the weather like in [Bali](destination) in July
+    - will it rain in [Iceland](destination) next week
+    - what's the climate like there this time of year
+    - how hot is it in [Dubai](destination) in summer
+
+- intent: ask_currency_exchange
+  examples: |
+    - what currency does [Thailand](destination) use
+    - what's the exchange rate for [Japan](destination)
+    - should I exchange money before arriving in [Brazil](destination)
+    - what's the best way to get local currency
+
+- intent: ask_language_tips
+  examples: |
+    - what language do they speak in [Morocco](destination)
+    - do I need to learn any phrases for [Japan](destination)
+    - is English widely spoken in [Vietnam](destination)
+    - useful phrases for [Egypt](destination)
+
+- intent: ask_safety_tips
+  examples: |
+    - is it safe to travel to [Kenya](destination)
+    - what safety precautions should I take in [Brazil](destination)
+    - are there areas to avoid in [Mexico City](destination)
+    - travel safety advice for solo travelers
+
+- intent: ask_travel_insurance
+  examples: |
+    - do I need travel insurance for [Thailand](destination)
+    - what should my insurance cover
+    - recommend travel insurance options
+    - is insurance required for adventure activities
+
+- intent: ask_health_precautions
+  examples: |
+    - what health precautions should I take before visiting [India](destination)
+    - do I need malaria tablets for [Kenya](destination)
+    - what's the health advice for traveling to [Peru](destination)
+    - are there health risks I should know about
+
+- intent: ask_vaccination_requirements
+  examples: |
+    - what vaccines do I need for [Kenya](destination)
+    - is yellow fever vaccination required for [Brazil](destination)
+    - do I need any shots before traveling to [Nigeria](destination)
+    - vaccination requirements for entry
+
+- intent: ask_time_zone_info
+  examples: |
+    - what time zone is [Tokyo](destination) in
+    - what's the time difference with [Sydney](destination)
+    - how many hours ahead is [Dubai](destination)
+    - time zone info for my destination
+
+- intent: ask_airport_info
+  examples: |
+    - which airport should I fly into for [Bali](destination)
+    - what's the main airport in [Lisbon](destination)
+    - is there a direct airport transfer in [Bangkok](destination)
+    - airport info for my trip
+    - what is the flight schedule from [Berlin](origin) to [Bangalore](destination)
+    - flight schedule from [Berlin](origin) to [Bangalore](destination)
+    - what is the flight schedule between [Berlin](origin) and [Bangalore](destination)
+    - flight departure times from [Berlin](origin) to [Bangalore](destination)
+
+- intent: request_booking_assistance
+  examples: |
+    - can you help me book this trip
+    - I want to reserve a hotel
+    - help me book a flight
+    - can I make a reservation through you
+
+- intent: ask_group_travel_discounts
+  examples: |
+    - are there discounts for group travel
+    - do sustainable tours offer group rates
+    - traveling with a group of 6, any deals
+    - group booking discounts for eco tours
+
+- intent: ask_family_friendly_sustainable_options
+  examples: |
+    - what are family-friendly eco travel options
+    - suggest sustainable destinations for kids
+    - are there green family resorts
+    - traveling with children, any eco-friendly tips
+
+- intent: ask_solo_travel_tips
+  examples: |
+    - any tips for solo sustainable travel
+    - is it safe to travel alone to [Vietnam](destination)
+    - suggest solo eco-travel destinations
+    - solo traveler advice for responsible tourism
+
+- intent: ask_digital_detox_retreats
+  examples: |
+    - are there digital detox retreats
+    - suggest a screen-free eco retreat
+    - where can I disconnect and relax sustainably
+    - mindfulness retreats with sustainability focus
+
+- intent: ask_slow_travel_tips
+  examples: |
+    - what is slow travel
+    - how do I travel at a slower, more sustainable pace
+    - tips for immersive low-impact travel
+    - what's the benefit of slow travel
+
+- intent: ask_carbon_footprint_of_food
+  examples: |
+    - what foods have the highest carbon footprint
+    - is eating meat bad for the environment while traveling
+    - how does my diet affect my travel footprint
+    - what food choices reduce emissions
+
+- intent: ask_carbon_footprint_of_shopping
+  examples: |
+    - does shopping while traveling add to my footprint
+    - how sustainable is buying souvenirs
+    - what's the environmental impact of tourist shopping
+    - should I avoid buying things on my trip
+
+- intent: ask_renewable_energy_hotels
+  examples: |
+    - do any hotels run on solar power
+    - are there hotels powered by renewable energy
+    - suggest hotels with green energy sources
+    - which accommodations use renewable power
+
+- intent: ask_reforestation_programs
+  examples: |
+    - can I contribute to tree planting programs
+    - are there reforestation projects I can support
+    - how do I plant trees to offset my trip
+    - suggest tree-planting initiatives
+
+- intent: correct_information
+  examples: |
+    - no, I meant [Paris](destination) not [Rome](destination)
+    - actually my destination is [Tokyo](destination)
+    - sorry I made a mistake, it's [Berlin](origin)
+    - that's wrong, I'm traveling with [3](passengers) not 2
+    - let me correct that, the date is [May 10th](date)
+
+- intent: ask_previous_trip_summary
+  examples: |
+    - can you show me my last trip's footprint
+    - what was my previous calculation
+    - remind me of my last search
+    - show my trip history
+
+- intent: restart_conversation
+  examples: |
+    - let's start over
+    - restart this conversation
+    - can we begin again
+    - reset everything
+    - start fresh please
+
+- intent: ask_bot_language_support
+  examples: |
+    - do you speak Spanish
+    - can I chat with you in French
+    - what languages do you support
+    - can you respond in German
+
+- intent: ask_data_privacy
+  examples: |
+    - what do you do with my data
+    - is my information private
+    - do you store my trip details
+    - how is my data used
+
+- intent: escalate_complaint
+  examples: |
+    - I want to file a complaint
+    - this bot gave me wrong information
+    - I'm not satisfied with this service
+    - I need to report an issue
+
+- intent: ask_membership_loyalty_programs
+  examples: |
+    - are there loyalty programs for sustainable travel
+    - do you offer rewards for eco travel
+    - is there a membership for frequent green travelers
+    - how do I earn points for sustainable choices
+
+- intent: ask_trip_cost_estimate
+  examples: |
+    - how much will this trip cost
+    - what's the budget for traveling to [Bali](destination)
+    - estimate the total cost of my trip
+    - how expensive is a sustainable trip to [Iceland](destination)
+
+- intent: ask_luggage_allowance
+  examples: |
+    - what's the luggage allowance for my flight
+    - how much can I pack
+    - are there weight limits for checked bags
+    - luggage restrictions for this airline
+
+- intent: small_talk
+  examples: |
+    - how are you today
+    - what's up
+    - nice weather we're having
+    - tell me something interesting
+    - do you like travel

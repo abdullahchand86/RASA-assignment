@@ -1,0 +1,11 @@
+.env
+*.pyc
+__pycache__/
+.rasa/
+models/
+results/
+.pytest_cache/
+node_modules/
+build/
+trackers.db
+*.log

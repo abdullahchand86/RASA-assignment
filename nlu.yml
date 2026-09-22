@@ -1,0 +1,98 @@
+version: "3.1"
+
+nlu:
+
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey there
+    - good morning
+    - hey bot
+    - hi, I need some travel help
+    - hello there
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - that's all, thanks
+    - talk to you later
+    - I'm done, bye
+
+- intent: ask_carbon_footprint_estimate
+  examples: |
+    - how much CO2 will my trip produce
+    - what's the carbon footprint of flying from [Berlin](origin) to [Bangkok](destination)
+    - calculate my travel emissions
+    - I'm flying from [London](origin) to [Tokyo](destination), what's my footprint
+    - can you estimate the emissions for my flight
+    - how sustainable is my trip to [Thailand](destination)
+    - what's the environmental impact of my journey
+    - tell me the carbon cost of traveling from [Paris](origin) to [New York](destination)
+
+- intent: compare_transport_modes
+  examples: |
+    - is it better to take the train or fly
+    - compare emissions between flying and driving
+    - what's greener, train or plane
+    - should I fly or take the train to [Amsterdam](destination)
+    - which transport option is more eco-friendly
+    - car vs train, which is better for the environment
+    - what's the lowest carbon way to travel to [Rome](destination)
+
+- intent: ask_sustainable_accommodation
+  examples: |
+    - suggest eco-friendly hotels in [Lisbon](destination)
+    - which hotels are more sustainable
+    - I want a green hotel option
+    - recommend low-impact accommodation
+    - are there eco lodges near [Bali](destination)
+    - what hotels have the lowest carbon footprint
+    - find me sustainable places to stay
+
+- intent: ask_offset_options
+  examples: |
+    - how can I offset my carbon emissions
+    - where can I buy carbon offsets
+    - I want to offset my flight
+    - recommend a carbon offset provider
+    - how do I compensate for my trip's emissions
+    - can I make my trip carbon neutral
+
+- intent: ask_sustainability_tips
+  examples: |
+    - give me tips for sustainable travel
+    - how can I travel more responsibly
+    - what can I do to reduce my travel impact
+    - any eco-friendly travel advice
+    - how do I make my trip greener
+    - tips for reducing my carbon footprint while traveling
+
+- intent: provide_trip_details
+  examples: |
+    - I'm traveling from [Berlin](origin) to [Bangkok](destination)
+    - my trip is from [Madrid](origin) to [Cairo](destination)
+    - I'll be flying on [March 5th](date)
+    - I'm going for [7](duration) nights
+    - traveling with [2](passengers) people
+    - departing from [Munich](origin)
+
+- intent: ask_general_info
+  examples: |
+    - what can you do
+    - how does this bot work
+    - what kind of questions can I ask you
+    - what is this chatbot for
+    - explain what you help with
+    - who made you
+
+- intent: out_of_scope
+  examples: |
+    - what's the weather today
+    - book me a flight
+    - tell me a joke
+    - what's the capital of France
+    - can you order food for me
+    - play some music

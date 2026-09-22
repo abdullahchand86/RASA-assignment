@@ -1,0 +1,15 @@
+FROM rasa/rasa-sdk:3.6.2
+
+WORKDIR /app
+
+COPY actions.py /app/actions/actions.py
+COPY data/eco_certified_db.json /app/actions/data/eco_certified_db.json
+COPY requirements-actions.txt /app/requirements-actions.txt
+
+USER root
+RUN pip install --no-cache-dir -r /app/requirements-actions.txt
+USER 1001
+
+EXPOSE 5055
+
+CMD ["start", "--actions", "actions"]

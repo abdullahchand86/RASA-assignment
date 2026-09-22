@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  rasa:
+    image: rasa/rasa:3.6.20-full
+    container_name: eco_travel_rasa
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./:/app
+    command: >
+      run
+      --enable-api
+      --cors "*"
+      --debug
+      --endpoints endpoints.yml
+    depends_on:
+      - action-server
+    networks:
+      - eco_travel_net
+    restart: unless-stopped
+
+  action-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.actions
+    container_name: eco_travel_actions
+    expose:
+      - "5055"        # internal only — never published to the host, per brief
+    env_file:
+      - .env
+    networks:
+      - eco_travel_net
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: eco_travel_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_RASA_URL=http://localhost:5005/webhooks/rest/webhook
+    depends_on:
+      - rasa
+    networks:
+      - eco_travel_net
+    restart: unless-stopped
+
+networks:
+  eco_travel_net:
+    driver: bridge

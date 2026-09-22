@@ -1,0 +1,20 @@
+version: "3.1"
+
+stories:
+- story: canonical sustainable trip flow
+  steps:
+  - user: |
+      hi
+    intent: greet
+  - action: utter_greet
+  - user: |
+      I'm traveling from Berlin to Kyoto
+    intent: provide_trip_details
+    entities:
+    - origin: Berlin
+    - destination: Kyoto
+  - action: action_get_location
+  - user: |
+      how can I make my trip greener
+    intent: ask_sustainability_tips
+  - action: utter_sustainability_tips

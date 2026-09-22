@@ -1,0 +1,75 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey there
+    - good morning
+    - can you help me plan a trip
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you later
+    - that's all, thanks
+
+- intent: ask_carbon_footprint_estimate
+  examples: |
+    - how much CO2 will my trip produce
+    - calculate my travel emissions
+    - estimate emissions for [500](distance_km) km by [car](transport_mode)
+    - what's the carbon footprint of flying from [Berlin](origin) to [Bangkok](destination)
+
+- intent: compare_transport_modes
+  examples: |
+    - is it better to take the train or fly
+    - compare emissions between flying and driving
+    - what's greener, train or plane
+    - which transport option is more eco-friendly
+
+- intent: ask_sustainable_accommodation
+  examples: |
+    - suggest eco-friendly hotels in [Lisbon](destination)
+    - which hotels are more sustainable
+    - recommend low-impact accommodation
+    - find me sustainable places to stay
+
+- intent: ask_offset_options
+  examples: |
+    - how can I offset my carbon emissions
+    - where can I buy carbon offsets
+    - I want to offset my flight
+    - can I make my trip carbon neutral
+
+- intent: ask_sustainability_tips
+  examples: |
+    - give me tips for sustainable travel
+    - how can I travel more responsibly
+    - what can I do to reduce my travel impact
+    - how do I make my trip greener
+
+- intent: provide_trip_details
+  examples: |
+    - I'm traveling from [Berlin](origin) to [Bangkok](destination)
+    - I'll be flying on [March 5th](date)
+    - I'm going for [7](duration) nights
+    - traveling with [2](passengers) people
+    - I want to visit [Kyoto](destination)
+    - I want to travel to [Karachi](destination)
+
+- intent: ask_general_info
+  examples: |
+    - what can you do
+    - how does this bot work
+    - what kind of questions can I ask you
+    - what is this chatbot for
+
+- intent: out_of_scope
+  examples: |
+    - what's the weather today
+    - book me a flight
+    - tell me a joke
+    - play some music
