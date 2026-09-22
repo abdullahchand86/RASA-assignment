@@ -20,6 +20,7 @@ nlu:
     - that's all, thanks
     - talk to you later
     - I'm done, bye
+    - bye bye
 
 - intent: ask_carbon_footprint_estimate
   examples: |
