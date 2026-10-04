@@ -4,7 +4,12 @@ Custom actions for the Sustainable Trip Planner Rasa assistant.
 
 Responsibilities (mapped to assignment Task 4):
 - action_get_location        -> OpenCage geocoding API
-- action_fetch_accommodation -> Amadeus sandbox API + static eco-certification DB
+- action_fetch_accommodation -> OpenStreetMap Overpass (api_clients) + static eco-certification DB
+- action_get_weather         -> Open-Meteo forecast
+- action_describe_place      -> Wikipedia REST summary
+- action_find_attractions    -> OpenStreetMap Overpass
+- action_find_transport      -> OpenStreetMap Overpass
+- action_convert_currency    -> Frankfurter (ECB reference rates)
 - action_calculate_carbon    -> Climatiq API
 - action_rank_options        -> weighted scoring (carbon, price, preference)
 - action_human_handover      -> packages full conversation context
@@ -37,14 +42,13 @@ except (ImportError, AttributeError):
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
+import api_clients
 
 load_dotenv()
 
 logger = logging.getLogger(__name__)
 
 CLIMATIQ_API_KEY = os.getenv("CLIMATIQ_API_KEY", "")
-AMADEUS_CLIENT_ID = os.getenv("AMADEUS_CLIENT_ID", "")
-AMADEUS_CLIENT_SECRET = os.getenv("AMADEUS_CLIENT_SECRET", "")
 OPENCAGE_API_KEY = os.getenv("OPENCAGE_API_KEY", "")
 
 REQUEST_TIMEOUT = 5  # seconds — keeps us inside the <3s critical-path budget
@@ -164,6 +168,63 @@ def _load_eco_database() -> List[Dict[str, Any]]:
     except (FileNotFoundError, json.JSONDecodeError) as e:
         logger.error("Eco database unavailable: %s", e)
         return []
+
+
+GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
+
+def _geocode(name: str):
+    coords = KNOWN_DESTINATIONS.get(name.lower())
+    if coords:
+        return coords
+    try:
+        response = requests.get(
+            GEOCODING_URL,
+            params={"name": name, "count": 1, "language": "en", "format": "json"},
+            headers=api_clients.HEADERS,
+            timeout=REQUEST_TIMEOUT,
+        )
+        response.raise_for_status()
+        results = response.json().get("results") or []
+        if results:
+            return results[0]["latitude"], results[0]["longitude"]
+    except (requests.exceptions.RequestException, KeyError, ValueError) as e:
+        logger.error("Geocoding error for %s: %s", name, e)
+    return None
+
+
+def _latest_destination_mention(tracker: Tracker):
+    latest_message = getattr(tracker, "latest_message", {}) or {}
+    text = (latest_message.get("text") or "").lower()
+    for name in KNOWN_DESTINATIONS:
+        if name in text:
+            return name
+    for entity in latest_message.get("entities", []) or []:
+        if entity.get("entity") == "destination" and entity.get("value"):
+            return str(entity["value"])
+    return None
+
+
+def _resolve_destination(tracker: Tracker):
+    """Return (name, lat, lng, events) for the destination the user is asking about."""
+    mentioned = _latest_destination_mention(tracker)
+    slot_name = tracker.get_slot("destination")
+    name = mentioned or slot_name
+    if not name:
+        return None, None, None, []
+    if not mentioned:
+        lat = tracker.get_slot("destination_lat")
+        lng = tracker.get_slot("destination_lng")
+        if lat is not None and lng is not None:
+            return name, lat, lng, []
+    coords = _geocode(name)
+    if not coords:
+        return name, None, None, []
+    lat, lng = coords
+    return name, lat, lng, [
+        SlotSet("destination", name),
+        SlotSet("destination_lat", lat),
+        SlotSet("destination_lng", lng),
+    ]
 
 
 class ActionGetLocation(Action):
@@ -353,7 +414,7 @@ class ActionCalculateDistance(Action):
 
 
 class ActionFetchAccommodation(Action):
-    """Retrieve hotel options from Amadeus sandbox + cross-reference eco-certification DB."""
+    """Retrieve hotel options from OpenStreetMap (Overpass) + cross-reference eco-certification DB."""
 
     def name(self) -> Text:
         return "action_fetch_accommodation"
@@ -361,34 +422,16 @@ class ActionFetchAccommodation(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        if not AMADEUS_CLIENT_ID or not AMADEUS_CLIENT_SECRET:
-            eco_db = _load_eco_database()
-            fallback_options = [
-                {"name": entry["name"], "hotel_id": None, "eco_certified": True}
-                for entry in eco_db[:5]
-            ]
-            return [SlotSet("accommodation_options", fallback_options)]
-
-        lat = tracker.get_slot("destination_lat")
-        lng = tracker.get_slot("destination_lng")
+        _, lat, lng, location_events = _resolve_destination(tracker)
 
         hotels = []
         if lat is not None and lng is not None:
             try:
-                token = self._get_amadeus_token()
-                response = requests.get(
-                    "https://test.api.amadeus.com/v1/reference-data/locations/hotels/by-geocode",
-                    headers={"Authorization": f"Bearer {token}"},
-                    params={"latitude": lat, "longitude": lng, "radius": 20},
-                    timeout=REQUEST_TIMEOUT,
-                )
-                response.raise_for_status()
-                hotels = response.json().get("data", [])[:10]
-
+                hotels = api_clients.find_hotels(lat, lng)
             except requests.exceptions.RequestException as e:
-                logger.error("Amadeus API error: %s", e)
+                logger.error("Overpass (hotels) error: %s", e)
                 dispatcher.utter_message(
-                    text="The live hotel database is unavailable, so I'm using "
+                    text="The live hotel search is unavailable, so I'm using "
                          "verified eco-certified options from my local catalogue."
                 )
         else:
@@ -402,32 +445,19 @@ class ActionFetchAccommodation(Action):
 
         enriched = []
         for hotel in hotels:
-            name = hotel.get("name", "Unknown")
+            name = hotel["name"]
             enriched.append({
                 "name": name,
-                "hotel_id": hotel.get("hotelId"),
+                "hotel_id": None,
                 "eco_certified": name.lower() in eco_names,
+                "stars": hotel.get("stars"),
             })
 
         if not enriched:
             enriched = [{"name": e["name"], "hotel_id": None, "eco_certified": True}
                         for e in eco_db[:5]]
 
-        return [SlotSet("accommodation_options", enriched)]
-
-    @staticmethod
-    def _get_amadeus_token() -> str:
-        response = requests.post(
-            "https://test.api.amadeus.com/v1/security/oauth2/token",
-            data={
-                "grant_type": "client_credentials",
-                "client_id": AMADEUS_CLIENT_ID,
-                "client_secret": AMADEUS_CLIENT_SECRET,
-            },
-            timeout=REQUEST_TIMEOUT,
-        )
-        response.raise_for_status()
-        return response.json()["access_token"]
+        return location_events + [SlotSet("accommodation_options", enriched)]
 
 
 class ActionCompareTransportModes(Action):
@@ -811,3 +841,368 @@ class ActionGenerateTravelTip(Action):
             dispatcher.utter_message(text=f"💡 {fallback}")
 
         return []
+
+
+class ActionGetWeather(Action):
+    """Fetch current + 3-day weather for the destination and give
+    sustainability-relevant travel advice (walk/cycle vs. public transport)."""
+
+    def name(self) -> Text:
+        return "action_get_weather"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        destination, lat, lng, location_events = _resolve_destination(tracker)
+
+        if lat is None or lng is None:
+            if destination is None:
+                dispatcher.utter_message(
+                    text="Which city should I check? For example: 'What's the weather in Lisbon?'"
+                )
+            else:
+                dispatcher.utter_message(
+                    text=f"I couldn't find coordinates for {destination} — could you check the spelling or try a nearby larger city?"
+                )
+            return []
+
+        try:
+            data = api_clients.get_weather(lat, lng)
+            current = data["current"]
+            daily = data["daily"]
+
+            today_max = daily["temperature_2m_max"][0]
+            today_rain = daily["precipitation_sum"][0]
+            advice = api_clients.weather_travel_advice(today_max, today_rain)
+
+            dispatcher.utter_message(
+                text=(
+                    f"Right now in {destination.title()}: {current['temperature_2m']}°C, "
+                    f"{current['precipitation']}mm precipitation. "
+                    f"Today's forecast: up to {today_max}°C with {today_rain}mm of rain expected — {advice}."
+                )
+            )
+            return location_events + [SlotSet("weather_summary", advice)]
+
+        except requests.exceptions.RequestException as e:
+            logger.error("Open-Meteo API error: %s", e)
+            dispatcher.utter_message(
+                text="I couldn't reach the weather service right now — "
+                     "check a forecast site before finalising outdoor plans."
+            )
+            return location_events
+        except (KeyError, IndexError) as e:
+            logger.error("Unexpected Open-Meteo response shape: %s", e)
+            dispatcher.utter_message(
+                text="I got an unexpected response from the weather service."
+            )
+            return location_events
+
+
+class ActionDescribePlace(Action):
+    """Give a short, attributed Wikipedia description of a named place,
+    falling back cleanly when no article exists (most small places)."""
+
+    def name(self) -> Text:
+        return "action_describe_place"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        place_name = _latest_destination_mention(tracker) or tracker.get_slot("place_name") or tracker.get_slot("destination")
+        if not place_name:
+            return []
+
+        try:
+            info = api_clients.describe_place(place_name.title())
+        except requests.exceptions.RequestException as e:
+            logger.error("Wikipedia API error: %s", e)
+            dispatcher.utter_message(
+                text=f"I couldn't look up details for {place_name} right now."
+            )
+            return []
+
+        if info is None:
+            dispatcher.utter_message(
+                text=f"I don't have a background summary for {place_name}, "
+                     "but it's on your list of options."
+            )
+            return []
+
+        dispatcher.utter_message(
+            text=f"{info['summary']} (Source: Wikipedia — {info['url']})"
+        )
+        return [SlotSet("place_name", place_name), SlotSet("place_description", info["summary"])]
+
+
+class ActionFindAttractions(Action):
+    """List verified museums/historic sites near the destination."""
+
+    def name(self) -> Text:
+        return "action_find_attractions"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        destination, lat, lng, location_events = _resolve_destination(tracker)
+
+        if lat is None or lng is None:
+            if destination is None:
+                dispatcher.utter_message(
+                    text="Which city should I check? For example: 'What cultural sites are in Lisbon?'"
+                )
+            else:
+                dispatcher.utter_message(
+                    text=f"I couldn't find coordinates for {destination} — could you check the spelling or try a nearby larger city?"
+                )
+            return []
+
+        try:
+            sites = api_clients.find_attractions(lat, lng)
+        except requests.exceptions.RequestException as e:
+            logger.error("Overpass (attractions) error: %s", e)
+            dispatcher.utter_message(
+                text="I couldn't reach the mapping service for cultural sites right now."
+            )
+            return location_events
+
+        if not sites:
+            dispatcher.utter_message(
+                text="I couldn't find notable museums or historic sites nearby — "
+                     "try a wider search radius or a nearby town."
+            )
+            return []
+
+        names = ", ".join(s["name"] for s in sites[:6])
+        dispatcher.utter_message(text=f"Nearby cultural sites: {names}.")
+        return location_events + [SlotSet("attractions_list", sites)]
+
+
+class ActionFindTransport(Action):
+    """Summarise public-transport proximity near the destination — location
+    only, not live timetables (OSM has no schedule data)."""
+
+    def name(self) -> Text:
+        return "action_find_transport"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        destination, lat, lng, location_events = _resolve_destination(tracker)
+
+        if lat is None or lng is None:
+            if destination is None:
+                dispatcher.utter_message(
+                    text="Which city should I check? For example: 'How do I get around in Lisbon?'"
+                )
+            else:
+                dispatcher.utter_message(
+                    text=f"I couldn't find coordinates for {destination} — could you check the spelling or try a nearby larger city?"
+                )
+            return []
+
+        try:
+            stops = api_clients.find_transport(lat, lng)
+        except requests.exceptions.RequestException as e:
+            logger.error("Overpass (transport) error: %s", e)
+            dispatcher.utter_message(
+                text="I couldn't reach the mapping service for transport data right now."
+            )
+            return location_events
+
+        verdict = api_clients.summarise_transport(stops)
+        dispatcher.utter_message(
+            text=f"Public transport here is {verdict} "
+                 f"({len(stops)} rail/metro/tram access points within 1.5km)."
+        )
+        return location_events + [SlotSet("transport_summary", verdict)]
+
+
+FRANKFURTER_CURRENCIES = {"AUD","BGN","BRL","CAD","CHF","CNY","CZK","DKK","EUR","GBP","HKD","HUF","IDR","ILS","INR","ISK","JPY","KRW","MXN","MYR","NOK","NZD","PHP","PLN","RON","SEK","SGD","THB","TRY","USD","ZAR"}
+
+CURRENCY_WORDS = {
+    "£": "GBP", "€": "EUR", "$": "USD", "¥": "JPY", "₹": "INR",
+    "pound": "GBP", "pounds": "GBP", "sterling": "GBP",
+    "euro": "EUR", "euros": "EUR",
+    "dollar": "USD", "dollars": "USD",
+    "yen": "JPY",
+    "rupee": "INR", "rupees": "INR",
+    "baht": "THB",
+    "franc": "CHF", "francs": "CHF",
+    "yuan": "CNY", "renminbi": "CNY",
+    "reais": "BRL",
+    "peso": "MXN", "pesos": "MXN",
+    "krona": "SEK", "kronor": "SEK",
+    "krone": "NOK", "kroner": "NOK",
+    "zloty": "PLN",
+    "lira": "TRY",
+    "rand": "ZAR",
+}
+
+AMBIGUOUS_CODE_WORDS = {"TRY"}
+
+DESTINATION_CURRENCIES = {
+    "london": "GBP", "uk": "GBP", "united kingdom": "GBP", "england": "GBP", "scotland": "GBP",
+    "paris": "EUR", "france": "EUR", "rome": "EUR", "italy": "EUR", "madrid": "EUR", "spain": "EUR",
+    "berlin": "EUR", "germany": "EUR", "lisbon": "EUR", "portugal": "EUR", "amsterdam": "EUR",
+    "netherlands": "EUR", "vienna": "EUR", "austria": "EUR", "athens": "EUR", "greece": "EUR",
+    "dublin": "EUR", "ireland": "EUR", "europe": "EUR",
+    "new york": "USD", "usa": "USD", "united states": "USD", "america": "USD",
+    "tokyo": "JPY", "kyoto": "JPY", "japan": "JPY",
+    "bangkok": "THB", "thailand": "THB",
+    "bangalore": "INR", "india": "INR", "delhi": "INR", "mumbai": "INR",
+    "brazil": "BRL", "rio": "BRL",
+    "mexico": "MXN",
+    "switzerland": "CHF", "zurich": "CHF", "geneva": "CHF",
+    "copenhagen": "DKK", "denmark": "DKK",
+    "norway": "NOK", "oslo": "NOK",
+    "sweden": "SEK", "stockholm": "SEK",
+    "iceland": "ISK",
+    "china": "CNY", "beijing": "CNY",
+    "australia": "AUD", "sydney": "AUD",
+    "canada": "CAD",
+    "south africa": "ZAR",
+    "turkey": "TRY", "istanbul": "TRY",
+    "korea": "KRW", "seoul": "KRW",
+    "singapore": "SGD",
+    "bali": "IDR", "indonesia": "IDR",
+    "karachi": "PKR", "pakistan": "PKR",
+    "costa rica": "CRC",
+}
+
+
+def _currency_mentions(text):
+    lower = text.lower()
+    mentions = []
+    for key, code in CURRENCY_WORDS.items():
+        if len(key) == 1 and not key.isalnum():
+            start = 0
+            while True:
+                pos = lower.find(key, start)
+                if pos == -1:
+                    break
+                mentions.append((pos, code))
+                start = pos + 1
+        else:
+            for match in re.finditer(r"\b" + re.escape(key) + r"\b", lower):
+                mentions.append((match.start(), code))
+    for match in re.finditer(r"\b[A-Za-z]{3}\b", text):
+        code = match.group(0).upper()
+        if code in FRANKFURTER_CURRENCIES and code not in AMBIGUOUS_CODE_WORDS:
+            mentions.append((match.start(), code))
+    mentions.sort(key=lambda item: item[0])
+    seen = set()
+    ordered = []
+    for pos, code in mentions:
+        if code not in seen:
+            seen.add(code)
+            ordered.append((pos, code))
+    return ordered
+
+
+def _destination_currency(text, tracker):
+    lower = text.lower()
+    for place, code in sorted(DESTINATION_CURRENCIES.items(), key=lambda item: len(item[0]), reverse=True):
+        if re.search(r"\b" + re.escape(place) + r"\b", lower):
+            return code
+    slot_destination = tracker.get_slot("destination")
+    if slot_destination:
+        slot_lower = slot_destination.lower()
+        for place, code in sorted(DESTINATION_CURRENCIES.items(), key=lambda item: len(item[0]), reverse=True):
+            if re.search(r"\b" + re.escape(place) + r"\b", slot_lower):
+                return code
+    return None
+
+
+class ActionConvertCurrency(Action):
+    """Convert a stated budget into the currency the user actually thinks
+    in, using ECB reference rates (not live market rates — say so)."""
+
+    def name(self) -> Text:
+        return "action_convert_currency"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        latest_message = getattr(tracker, "latest_message", {}) or {}
+        text = (latest_message.get("text") or "").lower()
+
+        mentions = _currency_mentions(text)
+        codes = [code for _, code in mentions]
+
+        amount_match = re.search(r"\d[\d,]*(?:\.\d+)?", text)
+        amount_was_default = False
+        if amount_match:
+            amount = float(amount_match.group(0).replace(",", ""))
+        else:
+            amount = tracker.get_slot("budget")
+            if amount is None:
+                amount = 100.0
+                amount_was_default = True
+
+        from_currency = tracker.get_slot("budget_currency") or "GBP"
+        to_currency = tracker.get_slot("destination_currency") or "EUR"
+
+        if len(codes) >= 2:
+            from_currency, to_currency = codes[0], codes[1]
+        elif len(codes) == 1:
+            pos, code = mentions[0]
+            if re.search(r"\b(to|in|into)\s*$", text[:pos]):
+                to_currency = code
+                from_currency = tracker.get_slot("budget_currency") or "GBP"
+            else:
+                from_currency = code
+                dest_code = _destination_currency(text, tracker)
+                to_currency = dest_code or tracker.get_slot("destination_currency") or "EUR"
+        else:
+            from_currency = tracker.get_slot("budget_currency") or "GBP"
+            dest_code = _destination_currency(text, tracker)
+            to_currency = dest_code or tracker.get_slot("destination_currency") or "EUR"
+
+        if from_currency == to_currency:
+            dispatcher.utter_message(
+                text=f"{from_currency} is already the local currency there, so no conversion is needed."
+            )
+            return [SlotSet("budget_currency", from_currency), SlotSet("destination_currency", to_currency)]
+
+        for code in (to_currency, from_currency):
+            if code not in FRANKFURTER_CURRENCIES:
+                dispatcher.utter_message(
+                    text=f"The ECB reference rates I use don't cover {code}, so I can't convert that one — please check your bank or a currency provider for the current rate."
+                )
+                return []
+
+        try:
+            converted, rate, date = api_clients.convert_currency(
+                float(amount), from_currency, to_currency
+            )
+            if amount_was_default:
+                dispatcher.utter_message(
+                    text=f"1 {from_currency} = {rate:.4f} {to_currency}, so 100 {from_currency} is about {converted:,.2f} {to_currency} (ECB reference rate, {date} — not a live market rate)."
+                )
+            else:
+                dispatcher.utter_message(
+                    text=f"{amount:,.2f} {from_currency} is approximately {converted:,.2f} {to_currency} (ECB reference rate, {date} — not a live market rate)."
+                )
+            slots = [
+                SlotSet("budget_currency", from_currency),
+                SlotSet("destination_currency", to_currency),
+                SlotSet("budget_converted", converted),
+            ]
+            if not amount_was_default:
+                slots.insert(0, SlotSet("budget", amount))
+            return slots
+
+        except requests.exceptions.RequestException as e:
+            logger.error("Frankfurter API error: %s", e)
+            dispatcher.utter_message(
+                text="I couldn't reach the currency conversion service right now — "
+                     "I'll keep working in your original currency."
+            )
+            return []
+        except KeyError:
+            dispatcher.utter_message(
+                text=f"I don't recognise '{to_currency}' as a currency code — "
+                     "could you give it in ISO format, e.g. EUR, GBP, USD?"
+            )
+            return []

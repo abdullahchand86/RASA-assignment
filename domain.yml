@@ -221,6 +221,55 @@ slots:
     mappings:
       - type: custom
 
+  place_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: destination
+  weather_summary:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  place_description:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  attractions_list:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: custom
+  transport_summary:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+  budget_currency:
+    type: text
+    initial_value: "GBP"
+    influence_conversation: false
+    mappings:
+      - type: custom
+  destination_currency:
+    type: text
+    initial_value: "EUR"
+    influence_conversation: false
+    mappings:
+      - type: custom
+  budget_converted:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: custom
+  budget:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: custom
+
 responses:
   utter_greet:
     - text: "Hi, I can help you plan a lower-impact trip. Where are you headed?"
@@ -263,7 +312,7 @@ responses:
     - text: "Choose rail or coach where practical, avoid short-haul flights, stay longer instead of taking many short trips, use public transport, and choose accommodation with credible environmental certification."
 
   utter_general_info:
-    - text: "I can estimate trip emissions, compare transport modes, suggest lower-impact accommodation, explain offsets, and share sustainable travel tips."
+    - text: "I can estimate trip emissions, compare transport modes, suggest lower-impact accommodation, check the weather, local transport and cultural sites at your destination, convert your budget into local currency, explain offsets, and share sustainable travel tips."
 
   utter_affirm:
     - text: "Great, I'll go ahead."
@@ -385,12 +434,6 @@ responses:
   utter_climate_change_travel_impact:
     - text: "Travel contributes through transport, accommodation, food, and infrastructure. Aviation can be especially emissions-intensive, so shorter trips, rail, longer stays, and efficient lodging can help."
 
-  utter_weather_forecast:
-    - text: "I do not have a live weather feed. Check the destination's official meteorological service for current forecasts and travel advisories."
-
-  utter_currency_exchange:
-    - text: "Check a current exchange-rate provider and your bank for fees. Use secure, regulated exchange services and keep a small backup payment method."
-
   utter_language_tips:
     - text: "Learn greetings, thanks, directions, and any phrases needed for accessibility or dietary needs. Local tourism offices and language guides are useful starting points."
 
@@ -499,6 +542,11 @@ actions:
   - action_generate_travel_tip
   - action_flight_schedule
   - action_calculate_distance
+  - action_get_weather
+  - action_describe_place
+  - action_find_attractions
+  - action_find_transport
+  - action_convert_currency
 
 session_config:
   session_expiration_time: 60

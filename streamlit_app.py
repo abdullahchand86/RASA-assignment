@@ -4,7 +4,7 @@ import uuid
 
 RASA_URL = "http://localhost:5005/webhooks/rest/webhook"
 RASA_HEALTH_URL = "http://localhost:5005/"
-RASA_TIMEOUT = 5
+RASA_TIMEOUT = 75
 
 st.set_page_config(page_title="Sustainable Trip Planner", page_icon="✈️", layout="wide")
 
@@ -49,6 +49,7 @@ elif page == "Chat":
         ("Plan Lisbon", "I want to visit Lisbon"),
         ("Travel Karachi", "I want to travel to Karachi"),
         ("Human advisor", "I need a human advisor"),
+        ("AI Travel Tip", "give me tips for sustainable travel"),
     ]
 
     cols = st.columns(4)

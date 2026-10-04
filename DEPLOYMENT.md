@@ -5,7 +5,7 @@
 ```
 frontend (3000) ---> rasa server (5005) ---> action-server (5055, internal only)
                                                      |
-                                          Climatiq / Amadeus / OpenCage APIs
+                                          Climatiq / OpenCage / OSM / Open-Meteo APIs
 ```
 
 The action server is exposed only on the internal Docker network
@@ -25,7 +25,7 @@ logic that calls third-party APIs with your keys.
 2. Copy the environment template and fill in real API keys:
    ```bash
    cp .env.example .env
-   # edit .env with your Climatiq / Amadeus / OpenCage keys
+   # edit .env with your Climatiq / OpenCage keys
    ```
 3. Train the Rasa model (one-off, before first run):
    ```bash
@@ -71,7 +71,7 @@ can incur charges), and it's sufficient for a graded demonstration.
 | Variable | Purpose | Where set |
 |---|---|---|
 | `CLIMATIQ_API_KEY` | Carbon calculation | `.env` (local) / Space secret (cloud) |
-| `AMADEUS_CLIENT_ID` / `AMADEUS_CLIENT_SECRET` | Hotel/flight sandbox data | `.env` / Space secret |
+| `OLLAMA_HOST` / `OLLAMA_MODEL` / `LLM_PROVIDER` | Optional LLM travel tips (falls back to static tips if unreachable) | `.env` / Space secret |
 | `OPENCAGE_API_KEY` | Geocoding | `.env` / Space secret |
 
 `.env` is listed in `.gitignore` — verify with `git status` before your

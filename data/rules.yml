@@ -36,7 +36,7 @@ rules:
 - rule: Give sustainability tips
   steps:
   - intent: ask_sustainability_tips
-  - action: utter_sustainability_tips
+  - action: action_generate_travel_tip
 
 - rule: Handle trip details
   steps:
@@ -76,6 +76,7 @@ rules:
 - rule: Explain local transport
   steps:
   - intent: ask_local_transport_options
+  - action: action_find_transport
   - action: utter_local_transport_options
 
 - rule: Suggest lower-carbon destinations
@@ -96,6 +97,8 @@ rules:
 - rule: Suggest an itinerary
   steps:
   - intent: request_itinerary_suggestion
+  - action: action_describe_place
+  - action: action_find_attractions
   - action: utter_itinerary_suggestion
 
 - rule: Explain sustainable food
@@ -262,12 +265,12 @@ rules:
 - rule: Handle weather question
   steps:
   - intent: ask_weather_forecast
-  - action: utter_weather_forecast
+  - action: action_get_weather
 
 - rule: Handle currency question
   steps:
   - intent: ask_currency_exchange
-  - action: utter_currency_exchange
+  - action: action_convert_currency
 
 - rule: Give language tips
   steps:
@@ -405,6 +408,8 @@ rules:
   steps:
   - intent: small_talk
   - action: utter_small_talk
+
+
 
 - rule: Handle NLU fallback
   steps:

@@ -181,6 +181,14 @@ nlu:
     - what local transport options are eco-friendly in [Amsterdam](destination)
     - can I rent a bike in [Copenhagen](destination)
     - does [Vienna](destination) have good public transit
+    - what train stations are near the centre of [Paris](destination)
+    - is [Berlin](destination) easy to get around without a car
+    - how good is public transport in [Rome](destination)
+    - are there trams or metro in [Lisbon](destination)
+    - can I get around [London](destination) by train
+    - public transport links in [Madrid](destination)
+    - do I need a car in [Kyoto](destination)
+    - how walkable and well-connected is [Tokyo](destination)
 
 - intent: ask_carbon_neutral_destinations
   examples: |
@@ -218,6 +226,14 @@ nlu:
     - help me plan a low-impact holiday to [Norway](destination)
     - what would a sustainable 5-day trip to [Peru](destination) look like
     - design an eco-conscious travel schedule
+    - what cultural sites should I visit in [Rome](destination)
+    - suggest museums and historic sites in [Berlin](destination)
+    - plan my sightseeing in [Lisbon](destination)
+    - what attractions are worth seeing in [Paris](destination)
+    - give me a sustainable itinerary for [Kyoto](destination)
+    - which museums can I see in [London](destination)
+    - what should I see in [Madrid](destination)
+    - create a cultural itinerary for my trip
 
 - intent: ask_food_sustainability
   examples: |
@@ -470,6 +486,14 @@ nlu:
     - will it rain in [Iceland](destination) next week
     - what's the climate like there this time of year
     - how hot is it in [Dubai](destination) in summer
+    - what's the weather in [Paris](destination)
+    - is it going to rain in [Lisbon](destination) this week
+    - weather forecast for [Kyoto](destination)
+    - how's the weather there right now
+    - check the weather in [Berlin](destination)
+    - will it be sunny in [Rome](destination)
+    - what temperature is it in [Madrid](destination)
+    - do I need an umbrella in [London](destination)
 
 - intent: ask_currency_exchange
   examples: |
@@ -477,6 +501,14 @@ nlu:
     - what's the exchange rate for [Japan](destination)
     - should I exchange money before arriving in [Brazil](destination)
     - what's the best way to get local currency
+    - convert 500 pounds to euros
+    - how much is £200 in yen
+    - convert my budget of 1000 GBP to USD
+    - what's 300 euros in pounds
+    - exchange rate from GBP to EUR
+    - how much local money will I get for 250 pounds in [Japan](destination)
+    - convert 1500 dollars to euros
+    - what is 100 GBP in THB
 
 - intent: ask_language_tips
   examples: |

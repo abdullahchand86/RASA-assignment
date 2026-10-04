@@ -44,7 +44,7 @@ stories:
   - user: |
       how can I make my trip greener
     intent: ask_sustainability_tips
-  - action: utter_sustainability_tips
+  - action: action_generate_travel_tip
   - user: |
       how can I offset my emissions
     intent: ask_offset_options
@@ -55,9 +55,38 @@ stories:
   - user: |
       asdkjh
     intent: nlu_fallback
-  - action: action_two_stage_clarify
+  - action: action_default_fallback
   - user: |
       still not understood
     intent: nlu_fallback
-  - action: action_two_stage_clarify
-  - action: action_human_handover
+  - action: action_default_fallback
+
+- story: check destination practicalities
+  steps:
+  - user: |
+      I want to visit Lisbon
+    intent: provide_trip_details
+    entities:
+    - destination: Lisbon
+  - action: action_get_location
+  - user: |
+      what's the weather like there
+    intent: ask_weather_forecast
+  - action: action_get_weather
+  - user: |
+      how do I get around in Lisbon
+    intent: ask_local_transport_options
+    entities:
+    - destination: Lisbon
+  - action: action_find_transport
+  - action: utter_local_transport_options
+  - user: |
+      convert 500 pounds to euros
+    intent: ask_currency_exchange
+  - action: action_convert_currency
+  - user: |
+      suggest an eco-friendly itinerary
+    intent: request_itinerary_suggestion
+  - action: action_describe_place
+  - action: action_find_attractions
+  - action: utter_itinerary_suggestion

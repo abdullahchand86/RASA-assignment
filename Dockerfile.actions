@@ -1,9 +1,11 @@
 FROM rasa/rasa-sdk:3.6.2
 
 WORKDIR /app
+ENV PYTHONPATH=/app/actions
 
 COPY actions.py /app/actions/actions.py
-COPY data/eco_certified_db.json /app/actions/data/eco_certified_db.json
+COPY api_clients.py /app/actions/api_clients.py
+COPY eco_certified_db.json /app/actions/eco_certified_db.json
 COPY requirements-actions.txt /app/requirements-actions.txt
 
 USER root
