@@ -250,11 +250,11 @@ responses:
     - text: "How much should sustainability weigh against cost when I look for options?"
       buttons:
         - title: "Prioritise low carbon"
-          payload: '/provide_trip_details{{"sustainability_level":"high"}}'
+          payload: '/provide_trip_details{"sustainability_level":"high"}'
         - title: "Balance cost and impact"
-          payload: '/provide_trip_details{{"sustainability_level":"moderate"}}'
+          payload: '/provide_trip_details{"sustainability_level":"moderate"}'
         - title: "Cost is my priority"
-          payload: '/provide_trip_details{{"sustainability_level":"low"}}'
+          payload: '/provide_trip_details{"sustainability_level":"low"}'
 
   utter_offset_options:
     - text: "First reduce emissions where possible, then consider a transparent, independently verified offset project. Check the project's methodology, additionality, permanence, and reporting before paying."

@@ -42,11 +42,10 @@ load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-# Hardcoded for this stage to ensure the chatbot uses the Climatiq API directly.
-CLIMATIQ_API_KEY = "4Q96PKD0XD349A3E3MEQPBT34C"
-AMADEUS_CLIENT_ID = ""
-AMADEUS_CLIENT_SECRET = ""
-OPENCAGE_API_KEY = ""
+CLIMATIQ_API_KEY = os.getenv("CLIMATIQ_API_KEY", "")
+AMADEUS_CLIENT_ID = os.getenv("AMADEUS_CLIENT_ID", "")
+AMADEUS_CLIENT_SECRET = os.getenv("AMADEUS_CLIENT_SECRET", "")
+OPENCAGE_API_KEY = os.getenv("OPENCAGE_API_KEY", "")
 
 REQUEST_TIMEOUT = 5  # seconds — keeps us inside the <3s critical-path budget
                       # when combined with async/parallel calls where possible
@@ -302,7 +301,6 @@ class ActionFlightSchedule(Action):
                  "active in this version. I can still estimate the route distance "
                  "and carbon impact, or help you compare transport options."
         )
-        return []
         return [
             SlotSet("origin", origin),
             SlotSet("destination", destination),
@@ -347,7 +345,6 @@ class ActionCalculateDistance(Action):
             text=f"The straight-line distance from {origin.title()} to "
                  f"{destination.title()} is approximately {distance_km:,.0f} km."
         )
-        return []
         return [
             SlotSet("origin", origin),
             SlotSet("destination", destination),
