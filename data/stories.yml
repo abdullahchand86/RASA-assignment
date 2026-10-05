@@ -43,8 +43,10 @@ stories:
   steps:
   - user: |
       how can I make my trip greener
-    intent: ask_sustainability_tips
-  - action: action_generate_travel_tip
+    intent: ask_sustainability_topic
+    entities:
+    - topic: general_tips
+  - action: action_answer_sustainability_topic
   - user: |
       how can I offset my emissions
     intent: ask_offset_options

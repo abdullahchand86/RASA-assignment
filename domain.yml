@@ -7,7 +7,6 @@ intents:
   - compare_transport_modes
   - ask_sustainable_accommodation
   - ask_offset_options
-  - ask_sustainability_tips
   - provide_trip_details
   - ask_general_info
   - out_of_scope
@@ -16,74 +15,30 @@ intents:
   - bot_challenge
   - thank_you
   - ask_local_transport_options
-  - ask_carbon_neutral_destinations
-  - ask_best_time_to_visit
-  - ask_sustainable_packing_tips
   - request_itinerary_suggestion
-  - ask_food_sustainability
-  - ask_wildlife_conservation_info
-  - ask_plastic_free_travel_tips
-  - ask_local_culture_etiquette
-  - ask_budget_friendly_sustainable_options
-  - ask_visa_requirements
   - request_human_agent
-  - compare_destinations_sustainability
-  - ask_public_transport_pass
   - provide_feedback
   - cancel_request
   - ask_carbon_footprint_definition
-  - ask_scope_of_emissions
-  - ask_hotel_certifications
-  - ask_carbon_offset_credibility
   - ask_flight_alternatives
   - ask_train_routes
   - ask_electric_vehicle_rental
   - ask_bike_rental_options
   - ask_walking_tour_options
-  - ask_sustainable_souvenirs
-  - ask_water_conservation_tips
-  - ask_energy_saving_tips_hotel
-  - ask_local_guides
-  - ask_community_based_tourism
-  - ask_volunteering_opportunities
-  - ask_national_parks_info
-  - ask_marine_conservation
-  - ask_coral_reef_safe_practices
-  - ask_overtourism_info
-  - ask_carbon_label_meaning
-  - ask_climate_change_travel_impact
   - ask_weather_forecast
   - ask_currency_exchange
-  - ask_language_tips
-  - ask_safety_tips
-  - ask_travel_insurance
-  - ask_health_precautions
-  - ask_vaccination_requirements
-  - ask_time_zone_info
-  - ask_airport_info
-  - request_booking_assistance
-  - ask_group_travel_discounts
-  - ask_family_friendly_sustainable_options
-  - ask_solo_travel_tips
-  - ask_digital_detox_retreats
-  - ask_slow_travel_tips
-  - ask_carbon_footprint_of_food
-  - ask_carbon_footprint_of_shopping
-  - ask_renewable_energy_hotels
-  - ask_reforestation_programs
   - correct_information
   - ask_previous_trip_summary
   - restart_conversation
-  - ask_bot_language_support
   - ask_data_privacy
   - escalate_complaint
-  - ask_membership_loyalty_programs
-  - ask_trip_cost_estimate
-  - ask_luggage_allowance
   - small_talk
+  - ask_sustainability_topic
+  - ask_travel_logistics
   - nlu_fallback
 
 entities:
+  - topic
   - origin
   - destination
   - date
@@ -107,6 +62,13 @@ slots:
     mappings:
       - type: from_entity
         entity: destination
+
+  topic:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: topic
 
   origin_lat:
     type: float
@@ -329,41 +291,20 @@ responses:
   utter_local_transport_options:
     - text: "For lower-impact local travel, look for rail, buses, trams, walking routes, bike share, and reputable bike rental services."
 
-  utter_carbon_neutral_destinations:
-    - text: "Consider destinations reachable by rail or coach, with strong public transport, protected natural areas, and credible sustainability programmes."
 
-  utter_best_time_to_visit:
-    - text: "Travelling in shoulder or low seasons can reduce crowding and pressure on local resources. Check local weather, closures, and community guidance before booking."
 
-  utter_sustainable_packing_tips:
-    - text: "Pack light and bring a refillable bottle, reusable utensils, a tote bag, toiletries without excess packaging, and durable clothing you can rewear."
 
   utter_itinerary_suggestion:
     - text: "A lower-impact itinerary usually combines fewer destinations, longer stays, public transport, local businesses, and time in nature without disturbing wildlife."
 
-  utter_food_sustainability:
-    - text: "Choose seasonal local food, plant-forward meals, small independent businesses, tap water where safe, and restaurants that minimise food waste."
 
-  utter_wildlife_conservation_info:
-    - text: "Choose accredited conservation operators, observe animals from a distance, avoid handling or feeding wildlife, and skip attractions involving captive-animal performances or rides."
 
-  utter_plastic_free_travel_tips:
-    - text: "Carry a refillable bottle, reusable bag, cup, and containers; use refill stations; refuse unnecessary packaging; and recycle according to local rules."
 
-  utter_local_culture_etiquette:
-    - text: "Learn a few local words, dress according to local expectations, ask before photographing people or sacred places, follow site rules, and spend with local businesses."
 
-  utter_budget_friendly_sustainable_options:
-    - text: "Travel by public transport, stay longer in one place, choose locally owned accommodation, avoid peak season, and prioritise free parks, walking tours, and community activities."
 
-  utter_visa_requirements:
-    - text: "Visa rules depend on your nationality, passport, route, and travel dates. Check the destination country's official immigration website before making arrangements."
 
-  utter_compare_destinations_sustainability:
     - text: "Compare destinations by transport access, visitor pressure, water and energy use, waste systems, conservation protections, and how much tourism benefits local communities."
 
-  utter_public_transport_pass:
-    - text: "Look for the destination's official visitor transit website or transport authority. Compare daily, multi-day, airport, and zone-based passes before purchasing."
 
   utter_feedback_received:
     - text: "Thanks for the feedback. I'll use it to improve the travel guidance."
@@ -374,14 +315,8 @@ responses:
   utter_carbon_footprint_definition:
     - text: "A carbon footprint is the greenhouse-gas emissions caused by an activity, usually reported as carbon-dioxide equivalent (CO2e) so different gases can be compared."
 
-  utter_scope_of_emissions:
-    - text: "Scope 1 covers direct emissions you control, Scope 2 covers purchased energy, and Scope 3 covers other indirect value-chain emissions such as travel and suppliers."
 
-  utter_hotel_certifications:
-    - text: "Look for credible certifications such as Green Key, LEED, EarthCheck, or a recognised national scheme. Check what the certification covers, its audit process, and its validity date."
 
-  utter_carbon_offset_credibility:
-    - text: "Offsets vary widely. Look for independent standards, additionality, permanence, transparent project documents, and clear monitoring. Reduce emissions first and treat offsets as a limited supplement."
 
   utter_flight_alternatives:
     - text: "For suitable routes, compare intercity rail, night trains, coaches, ferries, and shared ground transport. Rail and coach are often lower-impact than short-haul flights."
@@ -398,92 +333,34 @@ responses:
   utter_walking_tour_options:
     - text: "Walking tours are a low-impact way to explore. Consider a local guide or a self-guided route that respects residents, accessible paths, and protected sites."
 
-  utter_sustainable_souvenirs:
-    - text: "Choose durable, locally made goods with transparent materials and fair payment. Avoid products made from threatened wildlife, protected plants, or illegally sourced materials."
 
-  utter_water_conservation_tips:
-    - text: "Take shorter showers, reuse towels when appropriate, refill a bottle, avoid unnecessary laundry, and follow local water guidance, especially in water-stressed destinations."
 
-  utter_energy_saving_tips_hotel:
-    - text: "Turn off lights and electronics, adjust heating or cooling moderately, close doors and windows while climate control runs, and use linen-change options when practical."
 
-  utter_local_guides:
-    - text: "Choose guides who are locally based, fairly paid, properly licensed where required, and transparent about how tours benefit residents and protect places."
 
-  utter_community_based_tourism:
-    - text: "Community-based tourism is managed with local participation and benefits. Look for locally owned homestays, cooperatives, and tours with transparent community revenue sharing."
 
-  utter_volunteering_opportunities:
-    - text: "Choose programmes with local leadership, safeguarding, clear costs, measurable outcomes, and work that does not replace paid local roles. Avoid short-term projects involving vulnerable children."
 
-  utter_national_parks_info:
-    - text: "Visit official park websites for permits, seasonal conditions, transport, and visitor rules. Stay on trails, carry out waste, and use accredited guides where required."
 
-  utter_marine_conservation:
-    - text: "Snorkel and dive without touching coral or wildlife, keep your distance, use mooring points, avoid feeding animals, and choose operators that support marine conservation."
 
-  utter_coral_reef_safe_practices:
-    - text: "Do not touch or stand on coral. Wear reef-safe mineral sunscreen where appropriate, use rash protection, avoid anchoring on reefs, and follow local marine guidance."
 
-  utter_overtourism_info:
-    - text: "Overtourism occurs when visitor numbers overwhelm a place's environment, infrastructure, or community. Travel in quieter seasons, spread spending, and follow local capacity rules."
 
-  utter_carbon_label_meaning:
-    - text: "A carbon label estimates an activity's greenhouse-gas emissions using stated assumptions and boundaries. Compare the methodology and scope, not only the label colour."
 
-  utter_climate_change_travel_impact:
-    - text: "Travel contributes through transport, accommodation, food, and infrastructure. Aviation can be especially emissions-intensive, so shorter trips, rail, longer stays, and efficient lodging can help."
 
-  utter_language_tips:
-    - text: "Learn greetings, thanks, directions, and any phrases needed for accessibility or dietary needs. Local tourism offices and language guides are useful starting points."
 
-  utter_safety_tips:
-    - text: "Review official travel advisories, protect important documents, use licensed transport, keep emergency contacts available, and follow local advice."
 
-  utter_travel_insurance:
-    - text: "Compare coverage for medical care, evacuation, cancellation, baggage, activities, and pre-existing conditions. Read exclusions and confirm requirements for your destination."
 
-  utter_health_precautions:
-    - text: "Consult a qualified travel-health professional well before departure for destination-specific advice, medication, food and water guidance, and personal health needs."
 
-  utter_vaccination_requirements:
-    - text: "Vaccination requirements depend on your route, nationality, and health circumstances. Check official government and travel-health sources well before departure."
 
-  utter_time_zone_info:
-    - text: "Time zones and daylight-saving rules vary by destination and date. Check a current world-clock service for the exact local time and difference."
 
-  utter_airport_info:
-    - text: "Use the destination's official airport and transport websites to confirm airport names, terminals, transfer options, and current connection information."
 
-  utter_booking_assistance:
-    - text: "I cannot complete bookings or take payment. I can help compare lower-impact options and point you to the provider's official booking channel."
 
-  utter_group_travel_discounts:
-    - text: "Ask operators directly about group rates, off-peak discounts, and sustainable tour options. Confirm what is included and whether local providers benefit."
 
-  utter_family_friendly_sustainable_options:
-    - text: "Choose walkable destinations, rail or public transport, family-sized locally owned stays, nature activities with clear safety rules, and operators that respect communities."
 
-  utter_solo_travel_tips:
-    - text: "Share your itinerary with someone trusted, use reputable local operators, choose safe transport and accommodation, and favour low-impact activities that support local businesses."
 
-  utter_digital_detox_retreats:
-    - text: "For a lower-impact retreat, look for locally owned nature stays with clear limits on energy, water, waste, and group size, plus transparent sustainability practices."
 
-  utter_slow_travel_tips:
-    - text: "Slow travel means spending longer in fewer places, using ground transport where practical, and engaging more deeply with local communities instead of rushing between attractions."
 
-  utter_carbon_footprint_of_food:
-    - text: "Food emissions vary by ingredient, production, transport, and waste. Plant-forward, seasonal, local meals and avoiding food waste are generally lower-impact choices."
 
-  utter_carbon_footprint_of_shopping:
-    - text: "Shopping adds impact through materials, production, transport, and waste. Buy fewer durable items, choose local makers, and avoid disposable or illegally sourced souvenirs."
 
-  utter_renewable_energy_hotels:
-    - text: "Ask hotels how much energy comes from verified renewable sources, whether they generate power onsite, and how they measure and report energy use."
 
-  utter_reforestation_programs:
-    - text: "Choose transparent restoration projects with local ownership, native species, long-term monitoring, land-rights safeguards, and independently verifiable reporting."
 
   utter_correct_information:
     - text: "Thanks for the correction. I will use the updated trip information."
@@ -494,8 +371,6 @@ responses:
   utter_restart_conversation:
     - text: "Let's start fresh. Where would you like to travel?"
 
-  utter_bot_language_support:
-    - text: "I am currently configured for English. You can still ask about language resources for your destination."
 
   utter_data_privacy:
     - text: "Avoid sharing sensitive personal information here. Review your deployment's privacy policy and data-retention settings for details about storage and use."
@@ -503,14 +378,8 @@ responses:
   utter_escalate_complaint:
     - text: "I am sorry the service fell short. I can connect you with a human travel advisor to review the issue."
 
-  utter_membership_loyalty_programs:
-    - text: "Check providers directly for loyalty programmes and review whether rewards support genuinely lower-impact choices rather than encouraging extra travel."
 
-  utter_trip_cost_estimate:
-    - text: "A realistic trip budget depends on transport, nights, accommodation, food, activities, and season. I can help break those costs into categories."
 
-  utter_luggage_allowance:
-    - text: "Luggage limits vary by carrier, fare, route, and aircraft. Check the operating airline's official booking or baggage page before departure."
 
   utter_small_talk:
     - text: "I'm here and ready to help you plan a more sustainable trip."
@@ -547,6 +416,8 @@ actions:
   - action_find_attractions
   - action_find_transport
   - action_convert_currency
+  - action_answer_sustainability_topic
+  - action_answer_travel_logistics
 
 session_config:
   session_expiration_time: 60

@@ -44,6 +44,12 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 import api_clients
 
+# Consolidated topic-QA actions (replaced ~48 niche single-purpose intents).
+from actions_topics import (  # noqa: F401  (imported for action registration)
+    ActionAnswerSustainabilityTopic,
+    ActionAnswerTravelLogistics,
+)
+
 load_dotenv()
 
 logger = logging.getLogger(__name__)
@@ -266,7 +272,7 @@ class ActionGetLocation(Action):
                     buttons=[
                         {"title": "Estimate trip emissions", "payload": "/ask_carbon_footprint_estimate"},
                         {"title": "Find sustainable accommodation", "payload": "/ask_sustainable_accommodation"},
-                        {"title": "Get sustainable travel tips", "payload": "/ask_sustainability_tips"},
+                        {"title": "Get sustainable travel tips", "payload": '/ask_sustainability_topic{"topic":"general_tips"}'},
                     ],
                 )
                 return [
@@ -786,7 +792,7 @@ class ActionTwoStageClarify(Action):
             buttons=[
                 {"title": "Find eco-certified accommodation", "payload": "/ask_sustainable_accommodation"},
                 {"title": "Check carbon impact", "payload": "/ask_carbon_footprint_estimate"},
-                {"title": "Get sustainable travel tips", "payload": "/ask_sustainability_tips"},
+                {"title": "Get sustainable travel tips", "payload": '/ask_sustainability_topic{"topic":"general_tips"}'},
             ],
         )
         return [SlotSet("fallback_count", fallback_count + 1)]
