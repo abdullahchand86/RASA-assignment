@@ -11,7 +11,6 @@ nlu:
     - hey bot
     - hi, I need some travel help
     - hello there
-
 - intent: goodbye
   examples: |
     - bye
@@ -21,7 +20,6 @@ nlu:
     - talk to you later
     - I'm done, bye
     - bye bye
-
 - intent: ask_carbon_footprint_estimate
   examples: |
     - how much CO2 will my trip produce
@@ -32,7 +30,6 @@ nlu:
     - how sustainable is my trip to [Thailand](destination)
     - what's the environmental impact of my journey
     - tell me the carbon cost of traveling from [Paris](origin) to [New York](destination)
-
 - intent: compare_transport_modes
   examples: |
     - is it better to take the train or fly
@@ -42,7 +39,6 @@ nlu:
     - which transport option is more eco-friendly
     - car vs train, which is better for the environment
     - what's the lowest carbon way to travel to [Rome](destination)
-
 - intent: ask_sustainable_accommodation
   examples: |
     - suggest eco-friendly hotels in [Lisbon](destination)
@@ -52,7 +48,6 @@ nlu:
     - are there eco lodges near [Bali](destination)
     - what hotels have the lowest carbon footprint
     - find me sustainable places to stay
-
 - intent: ask_offset_options
   examples: |
     - how can I offset my carbon emissions
@@ -61,7 +56,6 @@ nlu:
     - recommend a carbon offset provider
     - how do I compensate for my trip's emissions
     - can I make my trip carbon neutral
-
 - intent: ask_sustainability_tips
   examples: |
     - give me tips for sustainable travel
@@ -70,7 +64,6 @@ nlu:
     - any eco-friendly travel advice
     - how do I make my trip greener
     - tips for reducing my carbon footprint while traveling
-
 - intent: provide_trip_details
   examples: |
     - I'm traveling from [Berlin](origin) to [Bangkok](destination)
@@ -79,7 +72,6 @@ nlu:
     - I'm going for [7](duration) nights
     - traveling with [2](passengers) people
     - departing from [Munich](origin)
-
 - intent: ask_general_info
   examples: |
     - what can you do
@@ -89,7 +81,6 @@ nlu:
     - explain what you help with
     - who made you
     - who is the creator of this bot?
-
 - intent: out_of_scope
   examples: |
     - what's the weather today

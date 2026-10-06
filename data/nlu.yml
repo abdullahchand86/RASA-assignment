@@ -13,7 +13,6 @@ nlu:
     - can you help me plan a sustainable trip
     - I need help planning a holiday
     - start a trip plan
-
     - hey, help me plan a trip
     - hello, I want to plan an eco-friendly holiday
     - good afternoon
@@ -28,7 +27,6 @@ nlu:
     - I'm done, bye
     - thanks, goodbye
     - have a good day
-
     - that's everything, bye
     - catch you later
     - I'm all set, thanks
@@ -53,7 +51,6 @@ nlu:
     - how many kilometres is it from [Berlin](origin) to [Paris](destination)
     - how many kilometres is it from [Berlin](origin) to [London](destination)
     - calculate the impact of my route
-
     - what's my carbon footprint flying from [Chicago](origin) to [Lisbon](destination)
     - estimate CO2 for a [1200](distance_km) km [train](transport_mode) journey
     - how much CO2 does a [400](distance_km) km [bus](transport_mode) trip emit
@@ -79,7 +76,6 @@ nlu:
     - compare a bus, train, and flight
     - compare transport options for my trip
     - which is more sustainable, a car or a bus
-
     - plane vs train vs car, which has the lowest emissions
     - is driving better than flying for the environment
     - ferry or plane, which is greener
@@ -102,7 +98,6 @@ nlu:
     - recommend an eco-friendly place to stay
     - show sustainable accommodation in [Kyoto](destination)
     - where can I stay responsibly
-
     - find me a green hotel in [Barcelona](destination)
     - which eco lodges would you recommend in [Costa Rica](destination)
     - are there sustainable guesthouses in [Hanoi](destination)
@@ -118,7 +113,6 @@ nlu:
     - can I make my trip carbon neutral
     - what are my carbon offset options
     - tell me about offsetting a journey
-
     - what's the best way to offset my flight emissions
     - offset the carbon from a [2](passengers) person trip
     - how much would it cost to offset a long-haul flight
@@ -140,7 +134,6 @@ nlu:
     - I want to travel to [Berlin](destination)
     - I want to travel to [Paris](destination)
     - I want to travel to [Karachi](destination)
-
     - there are [3](passengers) of us
     - travelling with [5](passengers) people
     - it's [2](passengers) adults and one child
@@ -190,7 +183,6 @@ nlu:
     - who made you
     - what features do you have
     - can you help me reduce travel emissions
-
     - what are you able to help with
     - give me an overview of your features
     - how can this bot help me travel greener
@@ -205,7 +197,6 @@ nlu:
     - play some music
     - fix my laptop
     - what is the latest football score
-
     - what stocks should I buy
     - write me an essay
     - what's the population of Brazil
@@ -225,7 +216,6 @@ nlu:
     - sounds good
     - yep, go ahead
     - that works for me
-
     - yes please
     - absolutely
     - that's correct, carry on
@@ -239,7 +229,6 @@ nlu:
     - no thanks
     - I don't want that
     - cancel that
-
     - definitely not
     - no, something else
     - incorrect, try again
@@ -252,7 +241,6 @@ nlu:
     - is this an AI
     - are you a chatbot
     - who am I speaking with
-
     - you're not a real person, are you
     - am I chatting with AI right now
     - are you an actual human being
@@ -265,7 +253,6 @@ nlu:
     - that's really helpful, thanks
     - great, thanks a lot
     - thanks for the info
-
     - brilliant, thanks
     - many thanks
     - lovely, thank you
@@ -287,7 +274,6 @@ nlu:
     - public transport links in [Madrid](destination)
     - do I need a car in [Kyoto](destination)
     - how walkable and well-connected is [Tokyo](destination)
-
     - what's the greenest way to get around [Seville](destination)
     - metro or buses in [Berlin](destination), which is better
     - are there e-scooter rentals in [Lisbon](destination)
@@ -308,7 +294,6 @@ nlu:
     - which museums can I see in [London](destination)
     - what should I see in [Madrid](destination)
     - create a cultural itinerary for my trip
-
     - plan three days of low-impact sightseeing in [Lisbon](destination)
     - a [4](duration) day green itinerary for [Barcelona](destination)
     - what's a good one-week eco itinerary for [Greece](destination)
@@ -324,7 +309,6 @@ nlu:
     - human advisor
     - speak to a human advisor
     - I want to speak with a human advisor
-
     - let me speak to someone human
     - get me a customer service rep
     - I'd like to escalate this to a person
@@ -336,7 +320,6 @@ nlu:
     - great response, thank you
     - that recommendation was spot on
     - this wasn't what I was looking for
-
     - that answer helped a lot
     - your suggestions missed the mark
     - that was really useful, cheers
@@ -348,7 +331,6 @@ nlu:
     - stop, I don't need this anymore
     - cancel that request
     - I changed my mind
-
     - scrap that, I don't want to continue
     - forget my trip details
     - abort the plan please
@@ -365,7 +347,6 @@ nlu:
     - what's a carbon footprint exactly
     - define carbon emissions for me
     - what does CO2 equivalent mean
-
     - what is meant by carbon footprint
     - explain CO2e in simple terms
     - how is a carbon footprint measured
@@ -377,7 +358,6 @@ nlu:
     - what are alternatives to flying for long trips
     - can I get to [Barcelona](destination) without flying
     - suggest non-flight options for this route
-
     - how can I reach [Amsterdam](destination) without flying
     - instead of a plane, how else can I get to [Edinburgh](destination)
     - is there a ferry to [Dublin](destination)
@@ -394,7 +374,6 @@ nlu:
     - what train routes go to [Amsterdam](destination)
     - can I take a night train to [Prague](destination)
     - are there high-speed rail options to [Paris](destination)
-
     - how do I get to [Zurich](destination) by train
     - are there sleeper trains to [Vienna](destination)
     - high-speed train from [Paris](origin) to [Amsterdam](destination)
@@ -407,7 +386,6 @@ nlu:
     - are EV rentals available in [Berlin](destination)
     - where can I find electric vehicle rentals
     - is there EV charging infrastructure in [Amsterdam](destination)
-
     - hire an EV in [Amsterdam](destination)
     - where are electric car chargers in [Scotland](destination)
     - can I rent a Tesla in [Los Angeles](destination)
@@ -420,7 +398,6 @@ nlu:
     - are there bike share programs in [Amsterdam](destination)
     - can I cycle around [Kyoto](destination)
     - suggest bike rental spots
-
     - cycle hire in [Seville](destination)
     - is there a city bike scheme in [Dublin](destination)
     - rent bikes for [2](passengers) in [Mallorca](destination)
@@ -433,7 +410,6 @@ nlu:
     - suggest a self-guided walking route
     - can I explore [Lisbon](destination) on foot
     - recommend a walking tour
-
     - free walking tours in [Prague](destination)
     - guided history walks in [Athens](destination)
     - a [3](duration) hour walking tour of [Istanbul](destination)
@@ -454,7 +430,6 @@ nlu:
     - will it be sunny in [Rome](destination)
     - what temperature is it in [Madrid](destination)
     - do I need an umbrella in [London](destination)
-
     - weather in [Barcelona](destination) this weekend
     - is [November](date) rainy in [Hanoi](destination)
     - temperature in [Reykjavik](destination) right now
@@ -472,7 +447,6 @@ nlu:
     - how much local money will I get for 250 pounds in [Japan](destination)
     - convert 1500 dollars to euros
     - what is 100 GBP in THB
-
     - where should I exchange money in [Bangkok](destination)
     - do shops in [Norway](destination) take cards
 - intent: correct_information
@@ -482,7 +456,6 @@ nlu:
     - sorry I made a mistake, it's [Berlin](origin)
     - that's wrong, I'm traveling with [3](passengers) not 2
     - let me correct that, the date is [May 10th](date)
-
     - correction: leaving from [Bristol](origin)
     - my destination is [Seoul](destination), not [Tokyo](destination)
     - the trip is [12](duration) days long
@@ -504,7 +477,6 @@ nlu:
     - what was my previous calculation
     - remind me of my last search
     - show my trip history
-
     - what did I ask before
     - repeat my last footprint result
     - what destinations did we discuss
@@ -521,7 +493,6 @@ nlu:
     - can we begin again
     - reset everything
     - start fresh please
-
     - wipe that, new conversation
     - back to the beginning please
     - clear my details and start again
@@ -533,7 +504,6 @@ nlu:
     - is my information private
     - do you store my trip details
     - how is my data used
-
     - where is my data stored
     - can you delete my information
     - do you share my details with anyone
@@ -546,7 +516,6 @@ nlu:
     - this bot gave me wrong information
     - I'm not satisfied with this service
     - I need to report an issue
-
     - I want to complain about this service
     - the bot got everything wrong, escalate
     - this is unacceptable, I want a manager
@@ -572,312 +541,305 @@ nlu:
     - what do you get up to between chats
     - it's been a long day
     - nice to chat with you
-
 - synonym: high
   examples: |
     - highly sustainable
     - as green as possible
     - maximum sustainability
-
 - synonym: moderate
   examples: |
     - balanced
     - moderately green
-
 - synonym: low
   examples: |
     - low priority
-
     - hello, how are you feeling
     - what do you think about travel
     - do you have hobbies
     - cheers mate
-
 - intent: ask_sustainability_topic
   examples: |
-    - - how do [carbon offsets](topic) actually work
-    - - are [carbon offsets](topic) a reliable way to compensate for flying
-    - - how do I know if an [offset scheme](topic) is legitimate
-    - - where can I buy credible [offsets](topic) for my flight
-    - - what makes a [carbon offset project](topic) trustworthy
-    - - do [offsetting programmes](topic) really reduce emissions
-    - - is there a [gold standard](topic) for offset schemes
-    - - what's the difference between [scope 1 2 and 3 emissions](topic)
-    - - explain [emission scopes](topic) in simple terms
-    - - which [scope](topic) covers the flights I take
-    - - do hotels report [scope 3 emissions](topic)
-    - - why do [emission scopes](topic) matter for my trip
-    - - give me an example of [scope 2 emissions](topic)
-    - - how are [scopes](topic) relevant to holiday planning
-    - - what does a [carbon label](topic) on a hotel mean
-    - - how do I read an [eco label](topic) on accommodation
-    - - what does [climate neutral certified](topic) actually mean
-    - - who verifies [carbon labels](topic)
-    - - are [eco labels](topic) on listings trustworthy
-    - - how is a [carbon rating](topic) calculated
-    - - what's the [climate impact](topic) of flying
-    - - how does [tourism](topic) contribute to climate change
-    - - what share of global [emissions](topic) comes from travel
-    - - how do [cruise ships](topic) affect the climate
-    - - is [flying](topic) really that bad for the planet
-    - - how does [travelling](topic) affect climate change
-    - - what's the [food footprint](topic) of a typical holiday
-    - - does eating [local food](topic) lower my emissions
-    - - is [seafood](topic) better than beef for the climate
-    - - which [meals](topic) have the lowest carbon cost
-    - - are [plant-based meals](topic) better for my footprint
-    - - how do [imported ingredients](topic) compare to local produce
-    - - what's the [shopping footprint](topic) of a trip abroad
-    - - does buying [souvenirs](topic) raise my emissions
-    - - is [fast fashion](topic) shopping on holiday a problem
-    - - how do [duty-free purchases](topic) affect my footprint
-    - - what's the carbon cost of [shipping gifts](topic) home
-    - - how can I [shop](topic) more sustainably while travelling
-    - - which hotels run on [renewable energy](topic)
-    - - are there [solar-powered hotels](topic) in [Spain](destination)
-    - - how do I find stays powered by [green electricity](topic)
-    - - do any eco lodges use [wind power](topic)
-    - - which accommodation uses [geothermal heating](topic)
-    - - how much [energy](topic) can I save by reusing towels
-    - - what [energy saving](topic) habits help in a hotel
-    - - should I turn off the [air conditioning](topic) when I go out
-    - - how do I cut [electricity](topic) waste in my room
-    - - are [linen reuse programmes](topic) worth it
-    - - what's the greenest way to use [heating](topic) on holiday
-    - - how do I save [water](topic) while travelling
-    - - what [water conservation](topic) habits matter in hotels
-    - - should I [skip towel washing](topic) on holiday
-    - - is [tap water](topic) safe in [Mexico](destination)
-    - - how can I be [water-wise](topic) in dry destinations
-    - - why do [shorter showers](topic) help abroad
-    - - how do I travel [plastic-free](topic)
-    - - what are the best [reusable alternatives](topic) for holidays
-    - - how do I avoid [single-use plastic](topic) at airports
-    - - ways to [refuse plastic packaging](topic) while travelling
-    - - what should I know about [wildlife conservation](topic) on holiday
-    - - how do I choose an [ethical wildlife tour](topic)
-    - - are there [animal sanctuaries](topic) I can visit ethically
-    - - what should I avoid when [watching wildlife](topic)
-    - - guidelines for responsible [whale watching](topic)
-    - - how can my trip support [ocean conservation](topic)
-    - - what is [marine conservation](topic) and why does it matter
-    - - how do I snorkel without harming [marine life](topic)
-    - - what is [responsible diving](topic)
-    - - how does tourism affect [ocean ecosystems](topic)
-    - - which [sunscreens](topic) damage coral
-    - - what is [reef-safe sunscreen](topic)
-    - - how do I protect [coral reefs](topic) while snorkelling
-    - - can standing on [coral](topic) kill it
-    - - how do [divers](topic) protect reefs
-    - - what is [reef-safe snorkelling](topic) etiquette
-    - - how do [reforestation programmes](topic) work
-    - - can tourists join [tree planting](topic) schemes
-    - - are [tree-planting offsets](topic) reliable
-    - - how do I find a transparent [reforestation project](topic)
-    - - what makes a [tree-planting charity](topic) reputable
-    - - which [national parks](topic) should I visit responsibly
-    - - what are the [entry rules](topic) for national parks
-    - - what is [leave-no-trace](topic) practice for parks
-    - - how do I book [eco tours](topic) in protected areas
-    - - when is the best time to see [wildlife in parks](topic)
-    - - what does [overtourism](topic) mean
-    - - which cities suffer most from [overtourism](topic)
-    - - what are quieter [alternatives to crowded destinations](topic)
-    - - how do I travel responsibly to [overcrowded cities](topic)
-    - - how does [mass tourism](topic) affect local communities
-    - - which [hotel certifications](topic) are credible
-    - - is [green globe](topic) a real certification
-    - - what does [earthcheck](topic) certify
-    - - how are [green hotel ratings](topic) verified
-    - - what makes an [eco certification](topic) trustworthy
-    - - what is [community-based tourism](topic)
-    - - are there [homestays](topic) run by local families
-    - - how does [community tourism](topic) help villages
-    - - can I book a [village experience](topic)
-    - - what are examples of [community-led tours](topic)
-    - - where can I find [volunteering opportunities](topic) for travellers
-    - - is [short-term volunteering](topic) abroad ethical
-    - - can I join a [conservation project](topic) as a tourist
-    - - what makes [volunteer programmes](topic) ethical
-    - - are [voluntourism](topic) schemes a good idea
-    - - how do I find [local guides](topic)
-    - - what makes a [local guide](topic) better than a big operator
-    - - can I hire a [community guide](topic) at my destination
-    - - are [private local guides](topic) worth it
-    - - who are the best [guides](topic) for cultural tours
-    - - what [local customs](topic) should I know before travelling
-    - - what are the dos and don'ts of [local etiquette](topic)
-    - - how should I [greet people](topic) respectfully abroad
-    - - what are [tipping customs](topic) in different countries
-    - - which [gestures](topic) are considered rude abroad
-    - - what [dress norms](topic) should I follow at religious sites
-    - - what makes a [souvenir](topic) sustainable
-    - - where can I find [locally made gifts](topic)
-    - - what should I avoid [buying abroad](topic)
-    - - are there [ethical craft markets](topic) worth visiting
-    - - what are the best [sustainable travel tips](topic)
-    - - give me some [green travel hacks](topic)
-    - - how do I lower my [footprint](topic) on holiday
-    - - what habits make [travel](topic) more sustainable
-    - - top tips for being a [greener traveller](topic)
-    - - what [sustainable packing](topic) essentials do I need
-    - - packing list for a [zero-waste trip](topic)
-    - - how do I [pack light](topic) and sustainably
-    - - what [toiletries](topic) are best for green travel
-    - - what are the [eco-friendly travel essentials](topic) to pack
-    - - budget [eco travel](topic) ideas for students
-    - - what's the cheapest [green way](topic) to travel around Europe
-    - - affordable [sustainable stays](topic) in [Portugal](destination)
-    - - are there [low-cost green hostels](topic) in [Budapest](destination)
-    - - how do I travel sustainably [on a budget](topic)
-    - - nature-based [activities for kids](topic) that are sustainable
-    - - what are good [family-friendly](topic) sustainable holidays
-    - - green cities to visit with [toddlers](topic)
-    - - eco resorts that cater for [families](topic)
-    - - sustainable [farm stays](topic) for a family trip
-    - - what is [slow travel](topic)
-    - - how do I embrace [slow travel](topic) in [Italy](destination)
-    - - is spending a [month in one place](topic) more sustainable
-    - - what are the benefits of [staying longer](topic) in fewer places
-    - - how does [slow touring](topic) reduce emissions
-    - - where can I find [digital detox retreats](topic)
-    - - are there [phone-free retreats](topic) in [Portugal](destination)
-    - - what are [off-grid cabins](topic)
-    - - recommend a [silent retreat](topic) with an eco focus
-    - - where can I [unplug](topic) for a week
-    - - what is [solo travel](topic) like for beginners
-    - - safe [solo destinations](topic) for first-timers
-    - - solo [hiking safety](topic) in [Norway](destination)
-    - - how do I [meet people](topic) while travelling alone
-    - - budget [solo eco travel](topic) advice
-    - - how do I [compare destinations](topic) on sustainability
-    - - which is more [eco-friendly, Lisbon or Barcelona](topic)
-    - - how do [two destinations](topic) compare on green credentials
-    - - can you [rank destinations](topic) by sustainability
-    - - which [city](topic) is greener, Oslo or Copenhagen
-    - - what are the best [carbon-neutral destinations](topic)
-    - - which destinations are known for [sustainable tourism](topic)
-    - - where should I go for a [low-carbon holiday](topic)
-    - - which [cities](topic) lead on green travel
-    - - what's the greenest [country](topic) to visit
-    - - when is the [best time to visit](topic) [Rome](destination)
-    - - when's the cheapest and [quietest season](topic) to travel
-    - - what [months](topic) are best for hiking in [Norway](destination)
-    - - when is [shoulder season](topic)
-    - - what time of year should I [avoid crowds](topic)
-    - - what's the [climate impact](topic) of travelling by [plane](transport_mode) from [Berlin](origin)
-    - - how does going by [train](transport_mode) instead of flying change my [footprint](topic)
-    - - plan a [low-carbon holiday](topic) from [Manchester](origin) to [Lisbon](destination) for [2](passengers)
-    - - where can we find [community-based tourism](topic) stays for [4](passengers) travellers
-    - - suggest [sustainable travel tips](topic) for a [10](duration) day trip in [Japan](destination)
-    - - what are the [best time to visit](topic) months for [Greece](destination) in [May](date)
-    - - recommend [sustainable stays](topic) in [Barcelona](destination) for [6](duration) nights
-    - - is [slow travel](topic) realistic for [3](passengers) with young children
-    - - how do [carbon offsets](topic) work for a group of [5](passengers)
-    - - which [eco certification](topic) should I look for in [Amsterdam](destination)
-    - - travelling by [ferry](transport_mode) to [Dublin](destination), any [marine conservation](topic) advice
-    - - [water conservation](topic) tips for [Hanoi](destination) in [July](date)
-
+    - how do [carbon offsets](topic) actually work
+    - are [carbon offsets](topic) a reliable way to compensate for flying
+    - how do I know if an [offset scheme](topic) is legitimate
+    - where can I buy credible [offsets](topic) for my flight
+    - what makes a [carbon offset project](topic) trustworthy
+    - do [offsetting programmes](topic) really reduce emissions
+    - is there a [gold standard](topic) for offset schemes
+    - what's the difference between [scope 1 2 and 3 emissions](topic)
+    - explain [emission scopes](topic) in simple terms
+    - which [scope](topic) covers the flights I take
+    - do hotels report [scope 3 emissions](topic)
+    - why do [emission scopes](topic) matter for my trip
+    - give me an example of [scope 2 emissions](topic)
+    - how are [scopes](topic) relevant to holiday planning
+    - what does a [carbon label](topic) on a hotel mean
+    - how do I read an [eco label](topic) on accommodation
+    - what does [climate neutral certified](topic) actually mean
+    - who verifies [carbon labels](topic)
+    - are [eco labels](topic) on listings trustworthy
+    - how is a [carbon rating](topic) calculated
+    - what's the [climate impact](topic) of flying
+    - how does [tourism](topic) contribute to climate change
+    - what share of global [emissions](topic) comes from travel
+    - how do [cruise ships](topic) affect the climate
+    - is [flying](topic) really that bad for the planet
+    - how does [travelling](topic) affect climate change
+    - what's the [food footprint](topic) of a typical holiday
+    - does eating [local food](topic) lower my emissions
+    - is [seafood](topic) better than beef for the climate
+    - which [meals](topic) have the lowest carbon cost
+    - are [plant-based meals](topic) better for my footprint
+    - how do [imported ingredients](topic) compare to local produce
+    - what's the [shopping footprint](topic) of a trip abroad
+    - does buying [souvenirs](topic) raise my emissions
+    - is [fast fashion](topic) shopping on holiday a problem
+    - how do [duty-free purchases](topic) affect my footprint
+    - what's the carbon cost of [shipping gifts](topic) home
+    - how can I [shop](topic) more sustainably while travelling
+    - which hotels run on [renewable energy](topic)
+    - are there [solar-powered hotels](topic) in [Spain](destination)
+    - how do I find stays powered by [green electricity](topic)
+    - do any eco lodges use [wind power](topic)
+    - which accommodation uses [geothermal heating](topic)
+    - how much [energy](topic) can I save by reusing towels
+    - what [energy saving](topic) habits help in a hotel
+    - should I turn off the [air conditioning](topic) when I go out
+    - how do I cut [electricity](topic) waste in my room
+    - are [linen reuse programmes](topic) worth it
+    - what's the greenest way to use [heating](topic) on holiday
+    - how do I save [water](topic) while travelling
+    - what [water conservation](topic) habits matter in hotels
+    - should I [skip towel washing](topic) on holiday
+    - is [tap water](topic) safe in [Mexico](destination)
+    - how can I be [water-wise](topic) in dry destinations
+    - why do [shorter showers](topic) help abroad
+    - how do I travel [plastic-free](topic)
+    - what are the best [reusable alternatives](topic) for holidays
+    - how do I avoid [single-use plastic](topic) at airports
+    - ways to [refuse plastic packaging](topic) while travelling
+    - what should I know about [wildlife conservation](topic) on holiday
+    - how do I choose an [ethical wildlife tour](topic)
+    - are there [animal sanctuaries](topic) I can visit ethically
+    - what should I avoid when [watching wildlife](topic)
+    - guidelines for responsible [whale watching](topic)
+    - how can my trip support [ocean conservation](topic)
+    - what is [marine conservation](topic) and why does it matter
+    - how do I snorkel without harming [marine life](topic)
+    - what is [responsible diving](topic)
+    - how does tourism affect [ocean ecosystems](topic)
+    - which [sunscreens](topic) damage coral
+    - what is [reef-safe sunscreen](topic)
+    - how do I protect [coral reefs](topic) while snorkelling
+    - can standing on [coral](topic) kill it
+    - how do [divers](topic) protect reefs
+    - what is [reef-safe snorkelling](topic) etiquette
+    - how do [reforestation programmes](topic) work
+    - can tourists join [tree planting](topic) schemes
+    - are [tree-planting offsets](topic) reliable
+    - how do I find a transparent [reforestation project](topic)
+    - what makes a [tree-planting charity](topic) reputable
+    - which [national parks](topic) should I visit responsibly
+    - what are the [entry rules](topic) for national parks
+    - what is [leave-no-trace](topic) practice for parks
+    - how do I book [eco tours](topic) in protected areas
+    - when is the best time to see [wildlife in parks](topic)
+    - what does [overtourism](topic) mean
+    - which cities suffer most from [overtourism](topic)
+    - what are quieter [alternatives to crowded destinations](topic)
+    - how do I travel responsibly to [overcrowded cities](topic)
+    - how does [mass tourism](topic) affect local communities
+    - which [hotel certifications](topic) are credible
+    - is [green globe](topic) a real certification
+    - what does [earthcheck](topic) certify
+    - how are [green hotel ratings](topic) verified
+    - what makes an [eco certification](topic) trustworthy
+    - what is [community-based tourism](topic)
+    - are there [homestays](topic) run by local families
+    - how does [community tourism](topic) help villages
+    - can I book a [village experience](topic)
+    - what are examples of [community-led tours](topic)
+    - where can I find [volunteering opportunities](topic) for travellers
+    - is [short-term volunteering](topic) abroad ethical
+    - can I join a [conservation project](topic) as a tourist
+    - what makes [volunteer programmes](topic) ethical
+    - are [voluntourism](topic) schemes a good idea
+    - how do I find [local guides](topic)
+    - what makes a [local guide](topic) better than a big operator
+    - can I hire a [community guide](topic) at my destination
+    - are [private local guides](topic) worth it
+    - who are the best [guides](topic) for cultural tours
+    - what [local customs](topic) should I know before travelling
+    - what are the dos and don'ts of [local etiquette](topic)
+    - how should I [greet people](topic) respectfully abroad
+    - what are [tipping customs](topic) in different countries
+    - which [gestures](topic) are considered rude abroad
+    - what [dress norms](topic) should I follow at religious sites
+    - what makes a [souvenir](topic) sustainable
+    - where can I find [locally made gifts](topic)
+    - what should I avoid [buying abroad](topic)
+    - are there [ethical craft markets](topic) worth visiting
+    - what are the best [sustainable travel tips](topic)
+    - give me some [green travel hacks](topic)
+    - how do I lower my [footprint](topic) on holiday
+    - what habits make [travel](topic) more sustainable
+    - top tips for being a [greener traveller](topic)
+    - what [sustainable packing](topic) essentials do I need
+    - packing list for a [zero-waste trip](topic)
+    - how do I [pack light](topic) and sustainably
+    - what [toiletries](topic) are best for green travel
+    - what are the [eco-friendly travel essentials](topic) to pack
+    - budget [eco travel](topic) ideas for students
+    - what's the cheapest [green way](topic) to travel around Europe
+    - affordable [sustainable stays](topic) in [Portugal](destination)
+    - are there [low-cost green hostels](topic) in [Budapest](destination)
+    - how do I travel sustainably [on a budget](topic)
+    - nature-based [activities for kids](topic) that are sustainable
+    - what are good [family-friendly](topic) sustainable holidays
+    - green cities to visit with [toddlers](topic)
+    - eco resorts that cater for [families](topic)
+    - sustainable [farm stays](topic) for a family trip
+    - what is [slow travel](topic)
+    - how do I embrace [slow travel](topic) in [Italy](destination)
+    - is spending a [month in one place](topic) more sustainable
+    - what are the benefits of [staying longer](topic) in fewer places
+    - how does [slow touring](topic) reduce emissions
+    - where can I find [digital detox retreats](topic)
+    - are there [phone-free retreats](topic) in [Portugal](destination)
+    - what are [off-grid cabins](topic)
+    - recommend a [silent retreat](topic) with an eco focus
+    - where can I [unplug](topic) for a week
+    - what is [solo travel](topic) like for beginners
+    - safe [solo destinations](topic) for first-timers
+    - solo [hiking safety](topic) in [Norway](destination)
+    - how do I [meet people](topic) while travelling alone
+    - budget [solo eco travel](topic) advice
+    - how do I [compare destinations](topic) on sustainability
+    - which is more [eco-friendly, Lisbon or Barcelona](topic)
+    - how do [two destinations](topic) compare on green credentials
+    - can you [rank destinations](topic) by sustainability
+    - which [city](topic) is greener, Oslo or Copenhagen
+    - what are the best [carbon-neutral destinations](topic)
+    - which destinations are known for [sustainable tourism](topic)
+    - where should I go for a [low-carbon holiday](topic)
+    - which [cities](topic) lead on green travel
+    - what's the greenest [country](topic) to visit
+    - when is the [best time to visit](topic) [Rome](destination)
+    - when's the cheapest and [quietest season](topic) to travel
+    - what [months](topic) are best for hiking in [Norway](destination)
+    - when is [shoulder season](topic)
+    - what time of year should I [avoid crowds](topic)
+    - what's the [climate impact](topic) of travelling by [plane](transport_mode) from [Berlin](origin)
+    - how does going by [train](transport_mode) instead of flying change my [footprint](topic)
+    - plan a [low-carbon holiday](topic) from [Manchester](origin) to [Lisbon](destination) for [2](passengers)
+    - where can we find [community-based tourism](topic) stays for [4](passengers) travellers
+    - suggest [sustainable travel tips](topic) for a [10](duration) day trip in [Japan](destination)
+    - what are the [best time to visit](topic) months for [Greece](destination) in [May](date)
+    - recommend [sustainable stays](topic) in [Barcelona](destination) for [6](duration) nights
+    - is [slow travel](topic) realistic for [3](passengers) with young children
+    - how do [carbon offsets](topic) work for a group of [5](passengers)
+    - which [eco certification](topic) should I look for in [Amsterdam](destination)
+    - travelling by [ferry](transport_mode) to [Dublin](destination), any [marine conservation](topic) advice
+    - [water conservation](topic) tips for [Hanoi](destination) in [July](date)
 - intent: ask_travel_logistics
   examples: |
     - what [documents](topic) do I need to enter [Brazil](destination)
     - what [entry documents](topic) are required for [Egypt](destination)
     - could you [reserve](topic) a hotel room for us
     - [book](topic) a room for [2](passengers) nights
-    - - what are the [visa requirements](topic) for [Thailand](destination)
-    - - how long can I stay in [Thailand](destination) without a [visa](topic)
-    - - do I need an [eTA](topic) for [Canada](destination)
-    - - what are the [visa on arrival](topic) rules for Indonesia
-    - - what [paperwork](topic) do I need for [Vietnam](destination)
-    - - can I enter [Morocco](destination) on a British [passport](topic)
-    - - what does [travel insurance](topic) need to cover
-    - - does my [insurance policy](topic) cover trekking in [Nepal](destination)
-    - - is [travel insurance](topic) mandatory for [Dubai](destination)
-    - - what's excluded from basic [travel cover](topic)
-    - - insurance for a [backpacking trip](topic)
-    - - the cheapest way to get [cover](topic) for a family trip
-    - - what [health precautions](topic) should I take abroad
-    - - altitude [sickness advice](topic) for [Cusco](destination)
-    - - food and [water safety](topic) in [Egypt](destination)
-    - - [mosquito protection](topic) in [Bali](destination)
-    - - [heat safety](topic) tips for [Dubai](destination)
-    - - how do I [stay healthy](topic) while travelling
-    - - what [vaccinations](topic) do I need for [Tanzania](destination)
-    - - do I need [jabs](topic) for [Kenya](destination)
-    - - hepatitis [vaccination](topic) for [Mexico](destination)
-    - - how early should I get [vaccinated](topic) before [Brazil](destination)
-    - - [rabies jab](topic) for rural [Vietnam](destination)
-    - - what's the [malaria risk](topic) in [Tanzania](destination)
-    - - what's the [time zone](topic) in [Tokyo](destination)
-    - - [time difference](topic) between [London](destination) and [Sydney](destination)
-    - - is there a [time difference](topic) with [New York](destination)
-    - - [jet lag](topic) tips for long-haul flights
-    - - does [India](destination) observe [daylight saving](topic)
-    - - what's the [UTC offset](topic) of [Dubai](destination)
-    - - what [airport info](topic) do I need before flying
-    - - airport [transfer options](topic) in [Bali](destination)
-    - - how early should I [arrive at the airport](topic)
-    - - is there [left luggage](topic) at [Rome](destination) airport
-    - - where do I find [terminal information](topic)
-    - - what are some useful [language tips](topic) for France
-    - - do people speak [English](topic) in [Korea](destination)
-    - - how do I say [hello](topic) in Greek
-    - - useful [translation apps](topic) for [China](destination)
-    - - [language etiquette](topic) in [Japan](destination)
-    - - how do I say [thank you](topic) in Portuguese
-    - - what [travel safety](topic) advice do you have
-    - - is [public transport](topic) safe at night in [Rome](destination)
-    - - [solo female safety](topic) in [India](destination)
-    - - what are the [emergency numbers](topic) in [Thailand](destination)
-    - - common [scams](topic) to avoid in [Barcelona](destination)
-    - - how do I keep [belongings safe](topic) while travelling
-    - - what's the [luggage allowance](topic) for budget airlines
-    - - [cabin bag](topic) size limits
-    - - [checked bag](topic) weight limits
-    - - allowance for [sports equipment](topic) on flights
-    - - how many [bags](topic) can I check in
-    - - are there [group discounts](topic) for tours
-    - - group rates for [8 people](topic)
-    - - do [eco lodges](topic) offer group pricing
-    - - [school group](topic) eco-trip deals
-    - - [corporate group](topic) sustainability packages
-    - - do you have a [loyalty programme](topic)
-    - - rewards for choosing [green hotels](topic)
-    - - any [points scheme](topic) for repeat users
-    - - can I earn [badges](topic) for sustainable trips
-    - - [perks](topic) for eco-friendly bookings
-    - - can you help with [booking](topic)
-    - - [book a sustainable hotel](topic) for me
-    - - reserve [2 seats](topic) on the train
-    - - arrange an [eco-friendly rental car](topic)
-    - - make a [reservation](topic) for March 3rd
-    - - can you [book](topic) a 5-night stay in [Kyoto](destination)
-    - - what's a realistic [trip cost](topic) for [Portugal](destination)
-    - - [budget estimate](topic) for 2 people for 7 nights
-    - - what does a [10-day eco trip](topic) to [Peru](destination) cost
-    - - average [daily spend](topic) in [Norway](destination)
-    - - [cost estimate](topic) for 4 travellers
-    - - is a [transport pass](topic) worth it in [Vienna](destination)
-    - - what [travel cards](topic) are available in [Madrid](destination)
-    - - is there a [week-long metro pass](topic) in [Madrid](destination)
-    - - tourist [transit pass](topic) prices in [Singapore](destination)
-    - - [day passes](topic) for public transport in [Rome](destination)
-    - - what [languages](topic) do you support
-    - - do you understand [Spanish](topic)
-    - - can we switch to [German](topic)
-    - - is [Italian](topic) supported
-    - - which [languages](topic) can you reply in
-    - - what [visa requirements](topic) apply for [2](passengers) flying from [London](origin) to [Tokyo](destination)
-    - - does [travel insurance](topic) cover a [7](duration) day trek in [Nepal](destination)
-    - - what [vaccinations](topic) are advised before [Kenya](destination) in [August](date)
-    - - [time zone](topic) difference for a call from [Sydney](origin) to [Rome](destination)
-    - - what's the [luggage allowance](topic) for a [14](duration) day trip by [coach](transport_mode)
-    - - are there [group discounts](topic) for [10](passengers) visiting [Barcelona](destination)
-    - - estimate [trip cost](topic) for [3](passengers) travelling for [9](duration) nights
-    - - what [airport info](topic) should I know when flying out of [Seoul](origin)
-    - - is a [transport pass](topic) worth it in [Vienna](destination) for [5](duration) days
-    - - any [health precautions](topic) for [2](passengers) backpacking in [Colombia](destination)
-
+    - what are the [visa requirements](topic) for [Thailand](destination)
+    - how long can I stay in [Thailand](destination) without a [visa](topic)
+    - do I need an [eTA](topic) for [Canada](destination)
+    - what are the [visa on arrival](topic) rules for Indonesia
+    - what [paperwork](topic) do I need for [Vietnam](destination)
+    - can I enter [Morocco](destination) on a British [passport](topic)
+    - what does [travel insurance](topic) need to cover
+    - does my [insurance policy](topic) cover trekking in [Nepal](destination)
+    - is [travel insurance](topic) mandatory for [Dubai](destination)
+    - what's excluded from basic [travel cover](topic)
+    - insurance for a [backpacking trip](topic)
+    - the cheapest way to get [cover](topic) for a family trip
+    - what [health precautions](topic) should I take abroad
+    - altitude [sickness advice](topic) for [Cusco](destination)
+    - food and [water safety](topic) in [Egypt](destination)
+    - [mosquito protection](topic) in [Bali](destination)
+    - [heat safety](topic) tips for [Dubai](destination)
+    - how do I [stay healthy](topic) while travelling
+    - what [vaccinations](topic) do I need for [Tanzania](destination)
+    - do I need [jabs](topic) for [Kenya](destination)
+    - hepatitis [vaccination](topic) for [Mexico](destination)
+    - how early should I get [vaccinated](topic) before [Brazil](destination)
+    - [rabies jab](topic) for rural [Vietnam](destination)
+    - what's the [malaria risk](topic) in [Tanzania](destination)
+    - what's the [time zone](topic) in [Tokyo](destination)
+    - [time difference](topic) between [London](destination) and [Sydney](destination)
+    - is there a [time difference](topic) with [New York](destination)
+    - [jet lag](topic) tips for long-haul flights
+    - does [India](destination) observe [daylight saving](topic)
+    - what's the [UTC offset](topic) of [Dubai](destination)
+    - what [airport info](topic) do I need before flying
+    - airport [transfer options](topic) in [Bali](destination)
+    - how early should I [arrive at the airport](topic)
+    - is there [left luggage](topic) at [Rome](destination) airport
+    - where do I find [terminal information](topic)
+    - what are some useful [language tips](topic) for France
+    - do people speak [English](topic) in [Korea](destination)
+    - how do I say [hello](topic) in Greek
+    - useful [translation apps](topic) for [China](destination)
+    - [language etiquette](topic) in [Japan](destination)
+    - how do I say [thank you](topic) in Portuguese
+    - what [travel safety](topic) advice do you have
+    - is [public transport](topic) safe at night in [Rome](destination)
+    - [solo female safety](topic) in [India](destination)
+    - what are the [emergency numbers](topic) in [Thailand](destination)
+    - common [scams](topic) to avoid in [Barcelona](destination)
+    - how do I keep [belongings safe](topic) while travelling
+    - what's the [luggage allowance](topic) for budget airlines
+    - [cabin bag](topic) size limits
+    - [checked bag](topic) weight limits
+    - allowance for [sports equipment](topic) on flights
+    - how many [bags](topic) can I check in
+    - are there [group discounts](topic) for tours
+    - group rates for [8 people](topic)
+    - do [eco lodges](topic) offer group pricing
+    - [school group](topic) eco-trip deals
+    - [corporate group](topic) sustainability packages
+    - do you have a [loyalty programme](topic)
+    - rewards for choosing [green hotels](topic)
+    - any [points scheme](topic) for repeat users
+    - can I earn [badges](topic) for sustainable trips
+    - [perks](topic) for eco-friendly bookings
+    - can you help with [booking](topic)
+    - [book a sustainable hotel](topic) for me
+    - reserve [2 seats](topic) on the train
+    - arrange an [eco-friendly rental car](topic)
+    - make a [reservation](topic) for March 3rd
+    - can you [book](topic) a 5-night stay in [Kyoto](destination)
+    - what's a realistic [trip cost](topic) for [Portugal](destination)
+    - [budget estimate](topic) for 2 people for 7 nights
+    - what does a [10-day eco trip](topic) to [Peru](destination) cost
+    - average [daily spend](topic) in [Norway](destination)
+    - [cost estimate](topic) for 4 travellers
+    - is a [transport pass](topic) worth it in [Vienna](destination)
+    - what [travel cards](topic) are available in [Madrid](destination)
+    - is there a [week-long metro pass](topic) in [Madrid](destination)
+    - tourist [transit pass](topic) prices in [Singapore](destination)
+    - [day passes](topic) for public transport in [Rome](destination)
+    - what [languages](topic) do you support
+    - do you understand [Spanish](topic)
+    - can we switch to [German](topic)
+    - is [Italian](topic) supported
+    - which [languages](topic) can you reply in
+    - what [visa requirements](topic) apply for [2](passengers) flying from [London](origin) to [Tokyo](destination)
+    - does [travel insurance](topic) cover a [7](duration) day trek in [Nepal](destination)
+    - what [vaccinations](topic) are advised before [Kenya](destination) in [August](date)
+    - [time zone](topic) difference for a call from [Sydney](origin) to [Rome](destination)
+    - what's the [luggage allowance](topic) for a [14](duration) day trip by [coach](transport_mode)
+    - are there [group discounts](topic) for [10](passengers) visiting [Barcelona](destination)
+    - estimate [trip cost](topic) for [3](passengers) travelling for [9](duration) nights
+    - what [airport info](topic) should I know when flying out of [Seoul](origin)
+    - is a [transport pass](topic) worth it in [Vienna](destination) for [5](duration) days
+    - any [health precautions](topic) for [2](passengers) backpacking in [Colombia](destination)
 - synonym: airport_info
   examples: |
     - airport info
@@ -885,7 +847,6 @@ nlu:
     - left luggage
     - terminal information
     - transfer options
-
 - synonym: best_time_to_visit
   examples: |
     - avoid crowds
@@ -893,7 +854,6 @@ nlu:
     - months
     - quietest season
     - shoulder season
-
 - synonym: booking_assistance
   examples: |
     - 2 seats
@@ -906,14 +866,12 @@ nlu:
     - make a reservation
     - reservation
     - reserve
-
 - synonym: bot_language_support
   examples: |
     - German
     - Italian
     - Spanish
     - languages
-
 - synonym: budget_friendly
   examples: |
     - eco travel
@@ -921,7 +879,6 @@ nlu:
     - low-cost green hostels
     - on a budget
     - sustainable stays
-
 - synonym: carbon_label
   examples: |
     - carbon label
@@ -930,7 +887,6 @@ nlu:
     - climate neutral certified
     - eco label
     - eco labels
-
 - synonym: carbon_neutral_destinations
   examples: |
     - carbon-neutral destinations
@@ -938,7 +894,6 @@ nlu:
     - country
     - low-carbon holiday
     - sustainable tourism
-
 - synonym: carbon_offsets
   examples: |
     - carbon offset project
@@ -947,7 +902,6 @@ nlu:
     - offset scheme
     - offsets
     - offsetting programmes
-
 - synonym: carbon_scope
   examples: |
     - emission scopes
@@ -956,7 +910,6 @@ nlu:
     - scope 2 emissions
     - scope 3 emissions
     - scopes
-
 - synonym: climate_impact
   examples: |
     - climate impact
@@ -965,7 +918,6 @@ nlu:
     - flying
     - tourism
     - travelling
-
 - synonym: community_tourism
   examples: |
     - community tourism
@@ -973,7 +925,6 @@ nlu:
     - community-led tours
     - homestays
     - village experience
-
 - synonym: compare_destinations
   examples: |
     - city
@@ -981,7 +932,6 @@ nlu:
     - eco-friendly, Lisbon or Barcelona
     - rank destinations
     - two destinations
-
 - synonym: coral_reef
   examples: |
     - coral
@@ -990,7 +940,6 @@ nlu:
     - reef-safe snorkelling
     - reef-safe sunscreen
     - sunscreens
-
 - synonym: digital_detox
   examples: |
     - digital detox retreats
@@ -998,7 +947,6 @@ nlu:
     - phone-free retreats
     - silent retreat
     - unplug
-
 - synonym: energy_saving
   examples: |
     - air conditioning
@@ -1007,7 +955,6 @@ nlu:
     - energy saving
     - heating
     - linen reuse programmes
-
 - synonym: family_friendly
   examples: |
     - activities for kids
@@ -1015,7 +962,6 @@ nlu:
     - family-friendly
     - farm stays
     - toddlers
-
 - synonym: food_footprint
   examples: |
     - food footprint
@@ -1024,7 +970,6 @@ nlu:
     - meals
     - plant-based meals
     - seafood
-
 - synonym: general_tips
   examples: |
     - footprint
@@ -1032,7 +977,6 @@ nlu:
     - greener traveller
     - sustainable travel tips
     - travel
-
 - synonym: group_discounts
   examples: |
     - 8 people
@@ -1040,7 +984,6 @@ nlu:
     - eco lodges
     - group discounts
     - school group
-
 - synonym: health_precautions
   examples: |
     - health precautions
@@ -1049,7 +992,6 @@ nlu:
     - sickness advice
     - stay healthy
     - water safety
-
 - synonym: hotel_certifications
   examples: |
     - earthcheck
@@ -1057,7 +999,6 @@ nlu:
     - green globe
     - green hotel ratings
     - hotel certifications
-
 - synonym: language_tips
   examples: |
     - English
@@ -1066,7 +1007,6 @@ nlu:
     - language tips
     - thank you
     - translation apps
-
 - synonym: local_culture
   examples: |
     - dress norms
@@ -1075,7 +1015,6 @@ nlu:
     - local customs
     - local etiquette
     - tipping customs
-
 - synonym: local_guides
   examples: |
     - community guide
@@ -1083,7 +1022,6 @@ nlu:
     - local guide
     - local guides
     - private local guides
-
 - synonym: loyalty_program
   examples: |
     - badges
@@ -1091,7 +1029,6 @@ nlu:
     - loyalty programme
     - perks
     - points scheme
-
 - synonym: luggage_allowance
   examples: |
     - bags
@@ -1099,7 +1036,6 @@ nlu:
     - checked bag
     - luggage allowance
     - sports equipment
-
 - synonym: marine_conservation
   examples: |
     - marine conservation
@@ -1107,7 +1043,6 @@ nlu:
     - ocean conservation
     - ocean ecosystems
     - responsible diving
-
 - synonym: national_parks
   examples: |
     - eco tours
@@ -1115,14 +1050,12 @@ nlu:
     - leave-no-trace
     - national parks
     - wildlife in parks
-
 - synonym: overtourism
   examples: |
     - alternatives to crowded destinations
     - mass tourism
     - overcrowded cities
     - overtourism
-
 - synonym: packing_tips
   examples: |
     - eco-friendly travel essentials
@@ -1130,14 +1063,12 @@ nlu:
     - sustainable packing
     - toiletries
     - zero-waste trip
-
 - synonym: plastic_free
   examples: |
     - plastic-free
     - refuse plastic packaging
     - reusable alternatives
     - single-use plastic
-
 - synonym: public_transport_pass
   examples: |
     - day passes
@@ -1145,7 +1076,6 @@ nlu:
     - transport pass
     - travel cards
     - week-long metro pass
-
 - synonym: reforestation
   examples: |
     - reforestation programmes
@@ -1153,7 +1083,6 @@ nlu:
     - tree planting
     - tree-planting charity
     - tree-planting offsets
-
 - synonym: renewable_energy
   examples: |
     - geothermal heating
@@ -1161,7 +1090,6 @@ nlu:
     - renewable energy
     - solar-powered hotels
     - wind power
-
 - synonym: safety
   examples: |
     - belongings safe
@@ -1170,7 +1098,6 @@ nlu:
     - scams
     - solo female safety
     - travel safety
-
 - synonym: shopping_footprint
   examples: |
     - duty-free purchases
@@ -1179,14 +1106,12 @@ nlu:
     - shop
     - shopping footprint
     - souvenirs
-
 - synonym: slow_travel
   examples: |
     - month in one place
     - slow touring
     - slow travel
     - staying longer
-
 - synonym: solo_travel
   examples: |
     - hiking safety
@@ -1194,14 +1119,12 @@ nlu:
     - solo destinations
     - solo eco travel
     - solo travel
-
 - synonym: sustainable_souvenirs
   examples: |
     - buying abroad
     - ethical craft markets
     - locally made gifts
     - souvenir
-
 - synonym: time_zone
   examples: |
     - UTC offset
@@ -1209,7 +1132,6 @@ nlu:
     - jet lag
     - time difference
     - time zone
-
 - synonym: travel_insurance
   examples: |
     - backpacking trip
@@ -1217,7 +1139,6 @@ nlu:
     - insurance policy
     - travel cover
     - travel insurance
-
 - synonym: trip_cost
   examples: |
     - 10-day eco trip
@@ -1225,7 +1146,6 @@ nlu:
     - cost estimate
     - daily spend
     - trip cost
-
 - synonym: vaccinations
   examples: |
     - jabs
@@ -1234,7 +1154,6 @@ nlu:
     - vaccinated
     - vaccination
     - vaccinations
-
 - synonym: visa
   examples: |
     - documents
@@ -1246,7 +1165,6 @@ nlu:
     - visa
     - visa on arrival
     - visa requirements
-
 - synonym: volunteering
   examples: |
     - conservation project
@@ -1254,7 +1172,6 @@ nlu:
     - volunteer programmes
     - volunteering opportunities
     - voluntourism
-
 - synonym: water_conservation
   examples: |
     - shorter showers
@@ -1263,7 +1180,6 @@ nlu:
     - water
     - water conservation
     - water-wise
-
 - synonym: wildlife_conservation
   examples: |
     - animal sanctuaries
@@ -1271,7 +1187,6 @@ nlu:
     - watching wildlife
     - whale watching
     - wildlife conservation
-
 - lookup: topic
   examples: |
     - 10-day eco trip
