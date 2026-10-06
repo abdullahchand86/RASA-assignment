@@ -245,6 +245,16 @@ nlu:
     - am I chatting with AI right now
     - are you an actual human being
     - am I speaking to a machine
+    - wait, am I talking to a human or a bot
+    - is a real person typing this or is it a bot
+    - you sound like a robot, are you actually a machine
+    - tell me honestly, are you a bot
+    - are you a person or an AI assistant
+    - so there's no human on the other end, right
+    - is this chatbot fully automated
+    - am I correct that you're a virtual assistant
+    - are you run by AI
+    - is anyone real behind this chat
 - intent: thank_you
   examples: |
     - thanks
@@ -467,6 +477,16 @@ nlu:
     - actually, that's wrong
     - let me fix my details
     - I need to amend what I said
+    - scratch that, I meant [June 3rd](date)
+    - oops, wrong city, it's [Oslo](destination)
+    - wait, the date should be [July 3rd](date)
+    - no wait, we are [2](passengers) in total
+    - my mistake, the origin is [Leeds](origin)
+    - hold on, that's not right, make it [5](duration) nights
+    - sorry, wrong destination, it's [Porto](destination)
+    - that's not what I meant, I'm going by [bus](transport_mode)
+    - I entered that wrong, the distance is [450](distance_km) km
+    - scrap my last answer, leaving on [March 30th](date)
     - change my earlier answer
     - no, we're [8](passengers) in total
     - it's actually [4](duration) weeks
